@@ -1,5 +1,5 @@
 /*************************************************************************
-                           Catalogue  -  description
+                Catalogue  -  Collection ordonnée de trajet
                              -------------------
     début                : 15/12/2022
     copyright            : (C) 2022 par Théo Gaigé et Elie Tarassov
@@ -53,24 +53,8 @@ const Liste * Catalogue::TrouverTrajetAvance (const char * const depart, const c
 } //----- Fin de Méthode
 
 //------------------------------------------------- Surcharge d'opérateurs
-//Catalogue & Catalogue::operator = ( const Catalogue & unCatalogue )
-// Algorithme :
-//
-//{
-//} //----- Fin de operator =
-
 
 //-------------------------------------------- Constructeurs - destructeur
-//Catalogue::Catalogue ( const Catalogue & unCatalogue )
-// Algorithme :
-//
-//{
-//#ifdef MAP
-//    cout << "Appel au constructeur de copie de <Catalogue>" << endl;
-//#endif
-//} //----- Fin de Catalogue (constructeur de copie)
-
-
 Catalogue::Catalogue ( )
     : trajets(new Liste)
 // Algorithme :
