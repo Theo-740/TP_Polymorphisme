@@ -1,5 +1,5 @@
 /*************************************************************************
-                           Maillon  -  description
+        Maillon  -  maillon d'une liste de trajet simplement chaînée
                              -------------------
     début                : 15/12/2022
     copyright            : (C) 2022 par Théo Gaigé et Elie Tarassov
@@ -31,47 +31,35 @@ public:
 //----------------------------------------------------- Méthodes publiques
     const Trajet * GetTrajet ( ) const;
     // Mode d'emploi :
-    //
+    // renvoie un pointeur sur le trajet contenu dans le maillon
     // Contrat :
     //
 
     Maillon * GetSuivant ( ) const;
     // Mode d'emploi :
-    //
+    // renvoie un pointeur sur le prochain maillon de la chaîne s'il existe, renvoie nullptr sinon
     // Contrat :
     //
 
     void SetSuivant ( Maillon * suivant );
     // Mode d'emploi :
-    //
+    // remplace le maillon suivant actuel par le maillon suivant passé en paramètre
     // Contrat :
     //
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-    //Maillon & operator = ( const Maillon & unMaillon );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
 
 //-------------------------------------------- Constructeurs - destructeur
-    //Maillon ( const Maillon & unMaillon );
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
-
     Maillon ( const Trajet * trajet, bool proprietaire );
     // Mode d'emploi :
-    //
+    // crée un nouveau maillon contenant le trajet passé en paramètre
     // Contrat :
-    //
+    // 
 
     virtual ~Maillon ( );
     // Mode d'emploi :
-    //
+    // detruit le maillon et les maillons suivants, si le maillon est propriétaire détruit également le trajet contenu
     // Contrat :
     //
 

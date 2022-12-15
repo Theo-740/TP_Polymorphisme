@@ -1,5 +1,5 @@
 /*************************************************************************
-                           Maillon  -  description
+        Maillon  -  maillon d'une liste de trajet simplement chaînée
                              -------------------
     début                : 15/12/2022
     copyright            : (C) 2022 par Théo Gaigé et Elie Tarassov
@@ -45,24 +45,8 @@ void Maillon::SetSuivant ( Maillon * suivant)
 } //----- Fin de Méthode
 
 //------------------------------------------------- Surcharge d'opérateurs
-//Maillon & Maillon::operator = ( const Maillon & unMaillon )
-// Algorithme :
-//
-//{
-//} //----- Fin de operator =
-
 
 //-------------------------------------------- Constructeurs - destructeur
-//Maillon::Maillon ( const Maillon & unMaillon )
-// Algorithme :
-//
-//{
-//#ifdef MAP
-//    cout << "Appel au constructeur de copie de <Maillon>" << endl;
-//#endif
-//} //----- Fin de Maillon (constructeur de copie)
-
-
 Maillon::Maillon ( const Trajet * trajet, bool proprietaire )
     : trajet(trajet), suivant(nullptr), proprietaire(proprietaire)
 // Algorithme :
@@ -76,7 +60,8 @@ Maillon::Maillon ( const Trajet * trajet, bool proprietaire )
 
 Maillon::~Maillon ( )
 // Algorithme :
-//
+// detruit le maillon suivant
+// si le maillon actuel est propriétaire détruit également son trajet
 {
 #ifdef MAP
     cout << "Appel au destructeur de <Maillon>" << endl;
