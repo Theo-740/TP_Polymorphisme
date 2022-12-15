@@ -1,12 +1,13 @@
 /*************************************************************************
-                           TrajetCompose  -  description
+        TrajetCompose  -  trajet compose d'un ou plusieurs trajets
                              -------------------
     début                : 15/12/2022
     copyright            : (C) 2022 par Théo Gaigé et Elie Tarassov
-    e-mail               : theo.gaige@insa-lyon.fr, elie.tarassov@insa-lyon.fr
+    e-mail               : theo.gaige@insa-lyon.fr
+                           elie.tarassov@insa-lyon.fr
 *************************************************************************/
 
-//---------- Réalisation de la classe <TrajetCompose> (fichier TrajetCompose.cpp) ------------
+//- Réalisation de la classe <TrajetCompose> (fichier TrajetCompose.cpp) -
 
 //---------------------------------------------------------------- INCLUDE
 
@@ -17,9 +18,9 @@ using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "Trajet.h"
-#include "Liste.h"
 #include "TrajetSimple.h"
 #include "TrajetCompose.h"
+#include "Liste.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -41,7 +42,7 @@ Liste * TrajetCompose::GetListeTrajets ( ) const
     return this->trajetsInternes->Clone();
 } //----- Fin de Méthode
 
-const TrajetCompose * TrajetCompose::LireTrajetCompose()
+const TrajetCompose * TrajetCompose::LireTrajetComposeSimple()
 // Algorithme :
 //
 {
@@ -93,25 +94,11 @@ Trajet * TrajetCompose::Clone ( ) const
 } //----- Fin de Méthode
 
 //------------------------------------------------- Surcharge d'opérateurs
-//TrajetCompose & TrajetCompose::operator = ( const TrajetCompose & unTrajetCompose )
-// Algorithme :
-//
-//{
-//} //----- Fin de operator =
-
 
 //-------------------------------------------- Constructeurs - destructeur
-//TrajetCompose::TrajetCompose ( const TrajetCompose & unTrajetCompose )
-// Algorithme :
-//
-//{
-//#ifdef MAP
-//    cout << "Appel au constructeur de copie de <TrajetCompose>" << endl;
-//#endif
-//} //----- Fin de TrajetCompose (constructeur de copie)
-
-
-TrajetCompose::TrajetCompose ( const char * const depart, const char * const arrivee, const Liste * const trajetsInternes )
+TrajetCompose::TrajetCompose ( const char * const depart, 
+                               const char * const arrivee, 
+                               const Liste * const trajetsInternes )
     : Trajet(depart, arrivee), trajetsInternes(trajetsInternes)
 // Algorithme :
 //
