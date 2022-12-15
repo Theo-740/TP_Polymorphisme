@@ -3,10 +3,11 @@
                              -------------------
     début                : 15/12/2022
     copyright            : (C) 2022 par Théo Gaigé et Elie Tarassov
-    e-mail               : theo.gaige@insa-lyon.fr, elie.tarassov@insa-lyon.fr
+    e-mail               : theo.gaige@insa-lyon.fr
+                           elie.tarassov@insa-lyon.fr
 *************************************************************************/
 
-//---------- Interface de la classe <Maillon> (fichier Maillon.h) ----------------
+//--------- Interface de la classe <Maillon> (fichier Maillon.h) ---------
 #if ! defined ( MAILLON_H )
 #define MAILLON_H
 
@@ -37,13 +38,15 @@ public:
 
     Maillon * GetSuivant ( ) const;
     // Mode d'emploi :
-    // renvoie un pointeur sur le prochain maillon de la chaîne s'il existe, renvoie nullptr sinon
+    // renvoie un pointeur sur le prochain maillon de la chaîne s'il 
+    // existe, renvoie nullptr sinon
     // Contrat :
     //
 
     void SetSuivant ( Maillon * suivant );
     // Mode d'emploi :
-    // remplace le maillon suivant actuel par le maillon suivant passé en paramètre
+    // remplace le maillon suivant actuel par le maillon suivant passé
+    // en paramètre
     // Contrat :
     //
 
@@ -59,7 +62,8 @@ public:
 
     virtual ~Maillon ( );
     // Mode d'emploi :
-    // detruit le maillon et les maillons suivants, si le maillon est propriétaire détruit également le trajet contenu
+    // detruit le maillon et les maillons suivants, si le maillon est 
+    // propriétaire détruit également le trajet contenu
     // Contrat :
     //
 
@@ -74,6 +78,6 @@ protected:
     const bool proprietaire;
 };
 
-//-------------------------------- Autres définitions dépendantes de <Maillon>
+//---------------------------- Autres définitions dépendantes de <Maillon>
 
 #endif // MAILLON_H

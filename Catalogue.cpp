@@ -3,10 +3,11 @@
                              -------------------
     début                : 15/12/2022
     copyright            : (C) 2022 par Théo Gaigé et Elie Tarassov
-    e-mail               : theo.gaige@insa-lyon.fr, elie.tarassov@insa-lyon.fr
+    e-mail               : theo.gaige@insa-lyon.fr
+                           elie.tarassov@insa-lyon.fr
 *************************************************************************/
 
-//---------- Réalisation de la classe <Catalogue> (fichier Catalogue.cpp) ------------
+//----- Réalisation de la classe <Catalogue> (fichier Catalogue.cpp) -----
 
 //---------------------------------------------------------------- INCLUDE
 
@@ -38,14 +39,16 @@ void Catalogue::Ajouter ( const Trajet * trajet )
     trajets->AjouterEnPlace(trajet);
 } //----- Fin de Méthode
 
-const Liste * Catalogue::TrouverTrajet (const char * const depart, const char * const arrivee ) const
+const Liste * Catalogue::TrouverTrajet (const char * const depart, 
+                                        const char * const arrivee ) const
 // Algorithme :
 //
 {
     return this->trajets->TrouverTrajet(depart, arrivee);
 } //----- Fin de Méthode
 
-const Liste * Catalogue::TrouverTrajetAvance (const char * const depart, const char * const arrivee ) const
+const Liste * Catalogue::TrouverTrajetAvance ( const char * const depart, 
+                                        const char * const arrivee ) const
 // Algorithme :
 //
 {

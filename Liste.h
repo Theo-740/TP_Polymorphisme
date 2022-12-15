@@ -3,10 +3,11 @@
                              -------------------
     début                : 15/12/2022
     copyright            : (C) 2022 par Théo Gaigé et Elie Tarassov
-    e-mail               : theo.gaige@insa-lyon.fr, elie.tarassov@insa-lyon.fr
+    e-mail               : theo.gaige@insa-lyon.fr
+                           elie.tarassov@insa-lyon.fr
 *************************************************************************/
 
-//---------- Interface de la classe <Liste> (fichier Liste.h) ----------------
+//----------- Interface de la classe <Liste> (fichier Liste.h) -----------
 #if ! defined ( LISTE_H )
 #define LISTE_H
 
@@ -38,7 +39,8 @@ public:
 
     void AfficherEnLigne ( ) const;
     // Mode d'emploi :
-    // Affiche les trajets contenu dans la liste sur une seule ligne entre accolades
+    // Affiche les trajets contenu dans la liste sur une seule ligne 
+    // entre accolades
     // Si la liste est vide affiche seulement les accolades
     // Contrat :
     //
@@ -51,7 +53,8 @@ public:
 
     void AjouterEnPlace ( const Trajet * trajet );
     // Mode d'emploi :
-    // Ajoute le trajet de telle manière que la liste reste triée selon le départ puis l'arrivée des trajets
+    // Ajoute le trajet de telle manière que la liste reste triée selon 
+    // le départ puis l'arrivée des trajets
     // Contrat :
     // La liste est déjà triée selon le départ puis l'arrivée des trajets
 
@@ -61,15 +64,19 @@ public:
     // Contrat :
     //
 
-    const Liste * TrouverTrajet ( const char * const depart, const char * const arrivee ) const;
+    const Liste * TrouverTrajet ( const char * const depart, 
+                                  const char * const arrivee ) const;
     // Mode d'emploi :
-    // Renvoie les trajets contenu dans la liste qui ont comme départ le départ spécifié et comme arrivée l'arrivée spécifiée
+    // Renvoie les trajets contenu dans la liste qui ont comme départ le 
+    // départ spécifié et comme arrivée l'arrivée spécifiée
     // Contrat :
     //
 
-    const Liste * TrouverTrajetAvance ( const char * const depart, const char * const arrivee ) const;
+    const Liste * TrouverTrajetAvance ( const char * const depart, 
+                                       const char * const arrivee ) const;
     // Mode d'emploi :
-    // Renvoie les compositions d'au moins deux trajets de la liste qui vont du départ spécifié à l'arrivée spécifiée
+    // Renvoie les compositions d'au moins deux trajets de la liste qui
+    // vont du départ spécifié à l'arrivée spécifiée
     // Contrat :
     //
 
@@ -90,7 +97,8 @@ public:
 
     virtual ~Liste ( );
     // Mode d'emploi :
-    // Détruit la liste et ses maillons, si la liste est propriétaire détruit aussi les trajets qu'elle contient
+    // Détruit la liste et ses maillons, si la liste est propriétaire 
+    // détruit aussi les trajets qu'elle contient
     // Contrat :
     //
 
@@ -100,13 +108,16 @@ protected:
 //----------------------------------------------------- Méthodes protégées
     Liste ( bool proprietaire );
     // Mode d'emploi :
-    // Construit une liste vide, qui est propriétaire ou non en fonction du paramêtre proprietaire
+    // Construit une liste vide, qui est propriétaire ou non en fonction
+    // du paramêtre proprietaire
     // Contrat :
     //
 
-    const Liste * RechercheRecursive ( const char * const depart, const char * const arrivee ) const;
+    const Liste * RechercheRecursive ( const char * const depart, 
+                                       const char * const arrivee ) const;
     // Mode d'emploi :
-    // Renvoie les trajets et compositions de trajets de la liste qui vont du départ spécifié à l'arrivée spécifiée
+    // Renvoie les trajets et compositions de trajets de la liste qui vont
+    // du départ spécifié à l'arrivée spécifiée
     // Contrat :
     //
 
@@ -116,6 +127,6 @@ protected:
     const bool proprietaire;
 };
 
-//-------------------------------- Autres définitions dépendantes de <Liste>
+//------------------------------ Autres définitions dépendantes de <Liste>
 
 #endif // LISTE_H

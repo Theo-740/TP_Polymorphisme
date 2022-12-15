@@ -7,7 +7,8 @@ using namespace std;
 #include "TrajetCompose.h"
 #include "Catalogue.h"
 
-int main() {
+int main() 
+{
     int choix;
     Catalogue c;
     char * depart, * arrivee;

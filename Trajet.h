@@ -3,10 +3,11 @@
                              -------------------
     début                : 15/12/2022
     copyright            : (C) 2022 par Théo Gaigé et Elie Tarassov
-    e-mail               : theo.gaige@insa-lyon.fr, elie.tarassov@insa-lyon.fr
+    e-mail               : theo.gaige@insa-lyon.fr
+                           elie.tarassov@insa-lyon.fr
 *************************************************************************/
 
-//---------- Interface de la classe <Trajet> (fichier Trajet.h) ----------------
+//---------- Interface de la classe <Trajet> (fichier Trajet.h) ----------
 #if ! defined ( TRAJET_H )
 #define TRAJET_H
 
@@ -62,33 +63,46 @@ public:
 
     int Compare ( const Trajet & trajet) const;
     // Mode d'emploi :
-    // Renvoie 0 si le départ et l'arrivée du trajet sont les mêmes que le départ et l'arrivée du trajet passé en paramètre
-    // Renvoie un entier positif si le trajet est plus grand que le trajet passé en paramètre dans l'ordre alphabétique du départ puis de l'arrivée
-    // Renvoie un entier négatif si le trajet est plus petit que le trajet passé en paramètre dans l'ordre alphabétique du départ puis de l'arrivée
+    // Renvoie 0 si le départ et l'arrivée du trajet sont les mêmes que le
+    // départ et l'arrivée du trajet passé en paramètre
+    // Renvoie un entier positif si le trajet est plus grand que le trajet
+    // passé en paramètre dans l'ordre alphabétique du départ puis de 
+    // l'arrivée
+    // Renvoie un entier négatif sinon
     // Contrat :
     //
 
-    int Compare ( const char * const depart, const char * const arrivee ) const;
+    int Compare ( const char * const depart, 
+                  const char * const arrivee ) const;
     // Mode d'emploi :
-    // Renvoie 0 si le départ et l'arrivée du trajet sont les mêmes que le départ et l'arrivée passés en paramètre
-    // Renvoie un entier positif si le trajet est plus grand que le départ et l'arrivée passés en paramètre dans l'ordre alphabétique du départ puis de l'arrivée
-    // Renvoie un entier négatif si le trajet est plus petit que le départ et l'arrivée passés en paramètre dans l'ordre alphabétique du départ puis de l'arrivée
+    // Renvoie 0 si le départ et l'arrivée du trajet sont les mêmes que le
+    // départ et l'arrivée passés en paramètre
+    // Renvoie un entier positif si le trajet est plus grand que le départ
+    // et l'arrivée passés en paramètre dans l'ordre alphabétique du 
+    // départ puis de l'arrivée
+    // Renvoie un entier négatif sinon
     // Contrat :
     //
 
     int CompareDepart ( const char * const depart ) const;
     // Mode d'emploi :
-    // Renvoie 0 si le départ du trajet est le même que le départ passé en paramètre
-    // Renvoie un entier positif si le départ du trajet est plus grand que le départ passé en paramètre dans l'ordre alphabétique
-    // Renvoie un entier négatif si le départ du trajet est plus petit que le départ passé en paramètre dans l'ordre alphabétique
+    // Renvoie 0 si le départ du trajet est le même que le départ passé 
+    // en paramètre
+    // Renvoie un entier positif si le départ du trajet est plus grand que
+    // le départ passé en paramètre dans l'ordre alphabétique
+    // Renvoie un entier négatif si le départ du trajet est plus petit que
+    // le départ passé en paramètre dans l'ordre alphabétique
     // Contrat :
     //
 
     int CompareArrivee ( const char * const arrivee ) const;
     // Mode d'emploi :
-    // Renvoie 0 si l'arrivée du trajet est le même que l'arrivée passé en paramètre
-    // Renvoie un entier positif si l'arrivée du trajet est plus grande que l'arrivée passé en paramètre dans l'ordre alphabétique
-    // Renvoie un entier négatif si l'arrivée du trajet est plus petite que l'arrivée passé en paramètre dans l'ordre alphabétique
+    // Renvoie 0 si l'arrivée du trajet est le même que l'arrivée passé
+    // en paramètre
+    // Renvoie un entier positif si l'arrivée du trajet est plus grande
+    // que l'arrivée passé en paramètre dans l'ordre alphabétique
+    // Renvoie un entier négatif si l'arrivée du trajet est plus petite
+    // que l'arrivée passé en paramètre dans l'ordre alphabétique
     // Contrat :
     //
     virtual Trajet * Clone ( ) const = 0;
@@ -102,7 +116,8 @@ public:
 //-------------------------------------------- Constructeurs - destructeur
     Trajet ( const char * const depart, const char * const arrivee);
     // Mode d'emploi :
-    // construit un trajet dont le départ et l'arrivée sont le départ et l'arrivée passés en paramètre
+    // construit un trajet dont le départ et l'arrivée sont le départ et 
+    // l'arrivée passés en paramètre
     // Contrat :
     //
 
@@ -122,6 +137,6 @@ protected:
     const char * const arrivee;
 };
 
-//-------------------------------- Autres définitions dépendantes de <Trajet>
+//----------------------------- Autres définitions dépendantes de <Trajet>
 
 #endif // TRAJET_H

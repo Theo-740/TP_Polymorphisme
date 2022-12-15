@@ -3,10 +3,11 @@
                              -------------------
     début                : 15/12/2022
     copyright            : (C) 2022 par Théo Gaigé et Elie Tarassov
-    e-mail               : theo.gaige@insa-lyon.fr, elie.tarassov@insa-lyon.fr
+    e-mail               : theo.gaige@insa-lyon.fr
+                           elie.tarassov@insa-lyon.fr
 *************************************************************************/
 
-//---------- Réalisation de la classe <Trajet> (fichier Trajet.cpp) ------------
+//-------- Réalisation de la classe <Trajet> (fichier Trajet.cpp) --------
 
 //---------------------------------------------------------------- INCLUDE
 
@@ -81,7 +82,8 @@ int Trajet::Compare ( const Trajet & trajet) const
     return strcmp(this->arrivee, trajet.arrivee);
 } //----- Fin de Méthode
 
-int Trajet::Compare ( const char * const depart, const char * const arrivee ) const
+int Trajet::Compare ( const char * const depart, 
+                      const char * const arrivee ) const
 // Algorithme :
 //
 {

@@ -3,10 +3,11 @@
                              -------------------
     début                : 15/12/2022
     copyright            : (C) 2022 par Théo Gaigé et Elie Tarassov
-    e-mail               : theo.gaige@insa-lyon.fr, elie.tarassov@insa-lyon.fr
+    e-mail               : theo.gaige@insa-lyon.fr
+                           elie.tarassov@insa-lyon.fr
 *************************************************************************/
 
-//---------- Interface de la classe <Catalogue> (fichier Catalogue.h) ----------------
+//------- Interface de la classe <Catalogue> (fichier Catalogue.h) -------
 #if ! defined ( CATALOGUE_H )
 #define CATALOGUE_H
 
@@ -36,19 +37,24 @@ public:
 
     void Ajouter ( const Trajet * trajet );
     // Mode d'emploi :
-    // Ajouter un trajet au catalogue au bon endroit pour que le catalogue reste trié
+    // Ajouter un trajet au catalogue au bon endroit pour que le catalogue
+    // reste trié
     // Contrat :
     //
 
-    const Liste * TrouverTrajet (const char * const depart, const char * const arrivee ) const;
+    const Liste * TrouverTrajet (const char * const depart, 
+                                 const char * const arrivee ) const;
     // Mode d'emploi :
-    // Renvoie les trajets contenus dans le catalogue qui ont comme départ le départ spécifié et comme arrivée l'arrivée spécifiée
+    // Renvoie les trajets contenus dans le catalogue qui ont comme départ
+    // le départ spécifié et comme arrivée l'arrivée spécifiée
     // Contrat :
     //
 
-    const Liste * TrouverTrajetAvance (const char * const depart, const char * const arrivee ) const;
+    const Liste * TrouverTrajetAvance (const char * const depart, 
+                                       const char * const arrivee ) const;
     // Mode d'emploi :
-    // Renvoie les compositions d'au moins deux trajets du catalogue qui vont du départ spécifié à l'arrivée spécifiée
+    // Renvoie les compositions d'au moins deux trajets du catalogue qui 
+    // vont du départ spécifié à l'arrivée spécifiée
     // Contrat :
     //
 
@@ -77,6 +83,6 @@ protected:
     Liste * const trajets;
 };
 
-//-------------------------------- Autres définitions dépendantes de <Catalogue>
+//-------------------------- Autres définitions dépendantes de <Catalogue>
 
 #endif // CATALOGUE_H
