@@ -1,5 +1,5 @@
 /*************************************************************************
-                           Liste  -  description
+                Liste  -  liste simplement chainée de trajet
                              -------------------
     début                : 15/12/2022
     copyright            : (C) 2022 par Théo Gaigé et Elie Tarassov
@@ -31,80 +31,66 @@ public:
 //----------------------------------------------------- Méthodes publiques
     void Afficher ( ) const;
     // Mode d'emploi :
-    //
+    // affiche les trajets contenu dans la liste sur plusieurs lignes
+    // Si la liste est vide affiche "Il n'y a pas de trajets"
     // Contrat :
     //
 
     void AfficherEnLigne ( ) const;
     // Mode d'emploi :
-    //
+    // Affiche les trajets contenu dans la liste sur une seule ligne entre accolades
+    // Si la liste est vide affiche seulement les accolades
     // Contrat :
     //
 
     void AjouterEnFin ( const Trajet * trajet );
     // Mode d'emploi :
-    //
+    // Ajoute le trajet a la fin de la liste
     // Contrat :
     //
 
     void AjouterEnPlace ( const Trajet * trajet );
     // Mode d'emploi :
-    //
+    // Ajoute le trajet de telle manière que la liste reste triée selon le départ puis l'arrivée des trajets
     // Contrat :
-    //
+    // La liste est déjà triée selon le départ puis l'arrivée des trajets
 
     void AjouterEnTete ( const Trajet * trajet );
     // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
-    //void AjouterEnPlace ( const Liste * trajets );
-    // Mode d'emploi :
-    //
+    // Ajoute le trajet au début de la liste
     // Contrat :
     //
 
     const Liste * TrouverTrajet ( const char * const depart, const char * const arrivee ) const;
     // Mode d'emploi :
-    //
+    // Renvoie les trajets contenu dans la liste qui ont comme départ le départ spécifié et comme arrivée l'arrivée spécifiée
     // Contrat :
     //
 
     const Liste * TrouverTrajetAvance ( const char * const depart, const char * const arrivee ) const;
     // Mode d'emploi :
-    //
+    // Renvoie les compositions d'au moins 2 trajets dans la liste qui vont du départ spécifié à l'arrivée spécifiée
     // Contrat :
     //
 
     Liste * Clone ( ) const;
-
-    bool EstVide ( ) const;
+    // Mode d'emploi :
+    // Renvoie une copie non propriétaire de la liste
+    // Contrat :
+    //
 
 //------------------------------------------------- Surcharge d'opérateurs
-    //Liste & operator = ( const Liste & unListe );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
 
 //-------------------------------------------- Constructeurs - destructeur
-    //Liste ( const Liste & unListe );
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
-
     Liste ( );
     // Mode d'emploi :
-    //
+    // Construit une liste vide propriétaire de ses trajets
     // Contrat :
     //
 
     virtual ~Liste ( );
     // Mode d'emploi :
-    //
+    // Détruit la liste et ses maillons, si la liste est propriétaire détruit aussi les trajets qu'elle contient
     // Contrat :
     //
 
@@ -114,13 +100,13 @@ protected:
 //----------------------------------------------------- Méthodes protégées
     Liste ( bool proprietaire );
     // Mode d'emploi :
-    //
+    // Construit une liste vide, qui est propriétaire ou non en fonction du paramêtre proprietaire
     // Contrat :
     //
 
     const Liste * RechercheRecursive ( const char * const depart, const char * const arrivee ) const;
     // Mode d'emploi :
-    //
+    // Renvoie les trajets et compositions de trajets de la liste qui vont du départ spécifié à l'arrivée spécifiée
     // Contrat :
     //
 

@@ -1,5 +1,5 @@
 /*************************************************************************
-                           Liste  -  description
+                Liste  -  liste simplement chainée de trajet
                              -------------------
     début                : 15/12/2022
     copyright            : (C) 2022 par Théo Gaigé et Elie Tarassov
@@ -28,11 +28,11 @@ using namespace std;
 //----------------------------------------------------- Méthodes publiques
 void Liste::Afficher ( ) const
 // Algorithme :
-//
+// 
 {
     if(this->premier == nullptr)
     {
-       cout << "vide" << endl;
+       cout << "Il n'y a pas de trajets" << endl;
     }
     else
     {
@@ -45,7 +45,7 @@ void Liste::Afficher ( ) const
             maillon = maillon->GetSuivant();
         }
     }
-} //----- Fin de Méthode
+} //----- Fin de Méthode Afficher
 
 void Liste::AfficherEnLigne ( ) const
 // Algorithme :
@@ -53,19 +53,23 @@ void Liste::AfficherEnLigne ( ) const
 {
     cout << "{";
     Maillon * maillon = this->premier;
-
-    while(maillon != nullptr)
+    if(maillon != nullptr)
     {
+    while(maillon->GetSuivant() != nullptr)
+        {
+            maillon->GetTrajet()->Afficher();
+            cout << " ,";
+            maillon = maillon->GetSuivant();
+        }
         maillon->GetTrajet()->Afficher();
-        cout << " ,";
-        maillon = maillon->GetSuivant();
     }
     cout << "}";
-} //----- Fin de Méthode
+} //----- Fin de Méthode AfficherEnLigne
 
 void Liste::AjouterEnFin ( const Trajet * const trajet )
 // Algorithme :
-//
+// Crée un maillon contenant le trajet, le maillon est propriétaire si et seulement si la liste l'est
+// l'ajoute en tant que premier maillon
 {
     Maillon * newMaillon = new Maillon(trajet, this->proprietaire);
 
@@ -80,23 +84,28 @@ void Liste::AjouterEnFin ( const Trajet * const trajet )
         this->dernier = newMaillon;
 
     }
-} //----- Fin de Méthode
+} //----- Fin de Méthode AjouterEnFin
 
 void Liste::AjouterEnTete ( const Trajet * const trajet )
 // Algorithme :
-//
+// Crée un maillon contenant le trajet, le maillon est propriétaire si et seulement si la liste l'est
+// l'ajoute en tant que premier maillon
 {
     Maillon * newMaillon = new Maillon(trajet, this->proprietaire);
     newMaillon->SetSuivant(this->premier);
     this->premier = newMaillon;
-    if(this->dernier == nullptr) {
+    if(this->dernier == nullptr) 
+    {
         this->dernier = newMaillon;
     }
-} //----- Fin de Méthode
+} //----- Fin de Méthode AjouterEnTete
 
 void Liste::AjouterEnPlace ( const Trajet * const trajet )
 // Algorithme :
-//
+// Crée un maillon contenant le trajet, le maillon est propriétaire si et seulement si la liste l'est
+// Si la liste est vide ajoute le maillon en tant que premier et dernier maillon de la liste
+// Si le premier trajet de la liste est plus grand dans l'ordre de trie que le trajet a ajouter le maillon en tête
+// Parcours les trajets dans l'ordre jusqu'à trouver un trajet plus petit ou égal que le trajet a ajouter et insère le maillon a sa place
 {
     Maillon * newMaillon = new Maillon(trajet, this->proprietaire);
 
@@ -104,7 +113,8 @@ void Liste::AjouterEnPlace ( const Trajet * const trajet )
     {
         this->premier = newMaillon;
     }
-    else if(trajet->Compare(*this->premier->GetTrajet()) <= 0) {
+    else if(trajet->Compare(*this->premier->GetTrajet()) <= 0) 
+    {
         newMaillon->SetSuivant(this->premier);
         this->premier = newMaillon;
     }
@@ -118,22 +128,13 @@ void Liste::AjouterEnPlace ( const Trajet * const trajet )
       newMaillon->SetSuivant(maillon->GetSuivant());
       maillon->SetSuivant(newMaillon);
     }
-} //----- Fin de Méthode
-
-/*void Liste::AjouterEnPlace ( const Liste * const trajets )
-// Algorithme :
-//
-{
-    Maillon * maillon = trajets->premier;
-    while(maillon != nullptr) {
-        this->AjouterEnPlace(maillon->GetTrajet()->Clone());
-        maillon = maillon->GetSuivant();
-    }
-} //----- Fin de Méthode*/
+} //----- Fin de Méthode AjouterEnPlace
 
 const Liste * Liste::TrouverTrajet (const char * const depart, const char * const arrivee ) const
 // Algorithme :
-//
+// Parcours tous les trajets de la liste
+// si un trajet a le même départ et la même arrivée que ceux passés en paramètre 
+// l'ajoute a la liste qui est renvoyée
 {
     Liste * trajetsTrouve = new Liste(false);
     Maillon * maillon = this->premier;
@@ -141,21 +142,24 @@ const Liste * Liste::TrouverTrajet (const char * const depart, const char * cons
     while(maillon != nullptr)
     {
         int cmp = maillon->GetTrajet()->Compare(depart,arrivee);
-        if(cmp == 0){
+        if(cmp == 0)
+        {
             trajetsTrouve->AjouterEnPlace(maillon->GetTrajet());
         }
-        else if(cmp > 0){
+        else if(cmp > 0)
+        {
           return trajetsTrouve;
         }
 
         maillon = maillon->GetSuivant();
     }
     return trajetsTrouve;
-} //----- Fin de Méthode
+} //----- Fin de Méthode TrouverTrajet
 
 const Liste * Liste::TrouverTrajetAvance (const char * const depart, const char * const arrivee ) const
 // Algorithme :
-//
+// crée une liste non propriétaire avec les trajets qui ne vont pas du départ spécifié a l'arrivée spécifiée
+// lance une recherche récursive sur la nouvelle liste
 {
     Liste * TrajetsNonDirects = new Liste(false);
 
@@ -163,7 +167,8 @@ const Liste * Liste::TrouverTrajetAvance (const char * const depart, const char 
 
     while(maillon != nullptr)
     {
-        if(maillon->GetTrajet()->Compare(depart, arrivee) != 0){
+        if(maillon->GetTrajet()->Compare(depart, arrivee) != 0)
+        {
             const Trajet * trajet = maillon->GetTrajet();
             TrajetsNonDirects->AjouterEnPlace(trajet);
         }
@@ -172,48 +177,26 @@ const Liste * Liste::TrouverTrajetAvance (const char * const depart, const char 
     const Liste * trajetsTrouves = TrajetsNonDirects->RechercheRecursive(depart, arrivee);
     delete TrajetsNonDirects;
     return trajetsTrouves;
-} //----- Fin de Méthode
+} //----- Fin de Méthode TrouverTrajetAvance
 
 Liste * Liste::Clone ( ) const
 // Algorithme :
-//
+// Crée une liste vide non propriétaire et la remplit avec les trajets contenu dans la liste originale
 {
     Liste * liste = new Liste(false);
     const Maillon * maillon = this->premier;
-    while(maillon != nullptr) {
+    while(maillon != nullptr) 
+    {
       liste->AjouterEnFin(maillon->GetTrajet());
       maillon = maillon->GetSuivant();
     }
     return liste;
-} //----- Fin de Méthode
-
-bool Liste::EstVide ( ) const
-// Algorithme :
-//
-{
-    return this->premier == nullptr;
-} //----- Fin de Méthode
+} //----- Fin de Méthode Clone
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-//Liste & Liste::operator = ( const Liste & unListe )
-// Algorithme :
-//
-//{
-//} //----- Fin de operator =
-
 
 //-------------------------------------------- Constructeurs - destructeur
-//Liste::Liste ( const Liste & uneListe )
-// Algorithme :
-//
-//{
-//#ifdef MAP
-//    cout << "Appel au constructeur de copie de <Liste>" << endl;
-//#endif
-//} //----- Fin de Liste (constructeur de copie)
-
-
 Liste::Liste ( )
     : premier(nullptr), dernier(nullptr), proprietaire(true)
 // Algorithme :
@@ -227,19 +210,16 @@ Liste::Liste ( )
 
 Liste::~Liste ( )
 // Algorithme :
-//
+// si il le premier maillon existe le détruit
+// en se detruisant chaque maillon détruit le maillon suivant
 {
 #ifdef MAP
     cout << "Appel au destructeur de <Liste>" << endl;
 #endif
-    delete this->premier;
-    /*while (this->premier != nullptr)
+    if(this->premier != nullptr)
     {
-      Maillon * tmp = this->premier->GetSuivant();
-      delete this->premier->trajet;
-      delete this->premier;
-      this->premier = tmp;
-    }*/
+        delete this->premier;
+    }
 } //----- Fin de ~Liste
 
 
@@ -258,7 +238,12 @@ Liste::Liste ( bool proprietaire )
 
 const Liste * Liste::RechercheRecursive (const char * const depart, const char * const arrivee ) const
 // Algorithme :
+// Crée une liste contenant les trajets ayant comme départ le départ spécifié en paramètre et une autre liste contenant les autres trajets
+// Pour chaque trajet ayant le bon départ : 
+//      Si le trajet a la bonne arrivée, l'ajoute a liste renvoyée en l'encapsulant dans un trajet composé
 //
+//      Sinon lance une recherche recursive sur les trajets n'ayant pas le bon départ entre l'arrivée du trajet et l'arrivée en paramètre
+//      et ajoute le trajet au début de chaque composition de trajet et les ajoute a la liste de retour
 {
     Liste * PossiblesPremiersTrajets = new Liste(false);
     Liste * AutresTrajets = new Liste(false);
@@ -268,7 +253,8 @@ const Liste * Liste::RechercheRecursive (const char * const depart, const char *
     while(maillon != nullptr)
     {
         const Trajet * trajet = maillon->GetTrajet();
-        if(trajet->CompareDepart(depart) == 0){
+        if(trajet->CompareDepart(depart) == 0)
+        {
             PossiblesPremiersTrajets->AjouterEnFin(trajet);
         }
         else
@@ -281,9 +267,11 @@ const Liste * Liste::RechercheRecursive (const char * const depart, const char *
     Liste * trajetsTrouves = new Liste;
 
     const Maillon * maillonTrajetDepart = PossiblesPremiersTrajets->premier;
-    while(maillonTrajetDepart != nullptr) {
+    while(maillonTrajetDepart != nullptr)
+    {
         const Trajet * trajet = maillonTrajetDepart->GetTrajet();
-        if(trajet->CompareArrivee(arrivee) == 0){
+        if(trajet->CompareArrivee(arrivee) == 0)
+        {
             Liste * l = new Liste(false);
             l->AjouterEnTete(trajet);
             char * departTrajet = new char[51];
@@ -296,7 +284,8 @@ const Liste * Liste::RechercheRecursive (const char * const depart, const char *
         {
             const Liste * trajetsSuivants = AutresTrajets->RechercheRecursive(trajet->GetArrivee(), arrivee);
             Maillon * maillonTrajetsSuivants = trajetsSuivants->premier;
-            while(maillonTrajetsSuivants != nullptr) {
+            while(maillonTrajetsSuivants != nullptr)
+            {
                 Liste * l = maillonTrajetsSuivants->GetTrajet()->GetListeTrajets();
                 l->AjouterEnTete(maillonTrajetDepart->GetTrajet());
                 char * departTrajet = new char[51];
@@ -315,4 +304,4 @@ const Liste * Liste::RechercheRecursive (const char * const depart, const char *
     
     return trajetsTrouves;
 
-} //----- Fin de Méthode
+} //----- Fin de Méthode RechercheRecursive
