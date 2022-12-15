@@ -69,7 +69,7 @@ public:
 
     const Liste * TrouverTrajetAvance ( const char * const depart, const char * const arrivee ) const;
     // Mode d'emploi :
-    // Renvoie les compositions d'au moins 2 trajets dans la liste qui vont du départ spécifié à l'arrivée spécifiée
+    // Renvoie les compositions d'au moins deux trajets de la liste qui vont du départ spécifié à l'arrivée spécifiée
     // Contrat :
     //
 
