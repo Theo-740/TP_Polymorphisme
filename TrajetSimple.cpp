@@ -1,12 +1,13 @@
 /*************************************************************************
-                           TrajetSimple  -  description
+        TrajetSimple  -  trajet direct avec moyen de transport
                              -------------------
-    début                : 15/12/2022
+    début                : 25/11/2022
     copyright            : (C) 2022 par Théo Gaigé et Elie Tarassov
-    e-mail               : theo.gaige@insa-lyon.fr, elie.tarassov@insa-lyon.fr
+    e-mail               : theo.gaige@insa-lyon.fr
+                           elie.tarassov@insa-lyon.fr
 *************************************************************************/
 
-//---------- Réalisation de la classe <TrajetSimple> (fichier TrajetSimple.cpp) ------------
+//-- Réalisation de la classe <TrajetSimple> (fichier TrajetSimple.cpp) --
 
 //---------------------------------------------------------------- INCLUDE
 
@@ -29,7 +30,8 @@ void TrajetSimple::Afficher ( ) const
 // Algorithme :
 //
 {
-    cout << "Trajet de " << depart << " à " << arrivee << " en " << transport;
+    cout << "Trajet de " << depart << " à " << arrivee 
+         << " en " << transport;
 } //----- Fin de Méthode
 
 const TrajetSimple * TrajetSimple::LireTrajetSimple()
@@ -72,25 +74,11 @@ Trajet * TrajetSimple::Clone ( ) const
 } //----- Fin de Méthode
 
 //------------------------------------------------- Surcharge d'opérateurs
-//TrajetSimple & TrajetSimple::operator = ( const TrajetSimple & unTrajetSimple )
-// Algorithme :
-//
-//{
-//} //----- Fin de operator =
-
 
 //-------------------------------------------- Constructeurs - destructeur
-//TrajetSimple::TrajetSimple ( const TrajetSimple & unTrajetSimple )
-// Algorithme :
-//
-//{
-//#ifdef MAP
-//    cout << "Appel au constructeur de copie de <TrajetSimple>" << endl;
-//#endif
-//} //----- Fin de TrajetSimple (constructeur de copie)
-
-
-TrajetSimple::TrajetSimple ( const char * const depart, const char * const arrivee, const char * const transport )
+TrajetSimple::TrajetSimple ( const char * const depart, 
+                             const char * const arrivee, 
+                             const char * const transport )
     : Trajet(depart, arrivee), transport(transport)
 // Algorithme :
 //
