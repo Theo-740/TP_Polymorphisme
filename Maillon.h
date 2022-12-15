@@ -1,7 +1,7 @@
 /*************************************************************************
         Maillon  -  maillon d'une liste de trajet simplement chaînée
                              -------------------
-    début                : 15/12/2022
+    début                : 25/11/2022
     copyright            : (C) 2022 par Théo Gaigé et Elie Tarassov
     e-mail               : theo.gaige@insa-lyon.fr
                            elie.tarassov@insa-lyon.fr

@@ -1,7 +1,7 @@
 /*************************************************************************
         TrajetCompose  -  trajet compose d'un ou plusieurs trajets
                              -------------------
-    début                : 15/12/2022
+    début                : 25/11/2022
     copyright            : (C) 2022 par Théo Gaigé et Elie Tarassov
     e-mail               : theo.gaige@insa-lyon.fr
                            elie.tarassov@insa-lyon.fr
