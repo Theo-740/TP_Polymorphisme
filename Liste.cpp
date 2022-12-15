@@ -1,9 +1,9 @@
 /*************************************************************************
                            Liste  -  description
                              -------------------
-    début                : $DATE$
-    copyright            : (C) $YEAR$ par $AUTHOR$
-    e-mail               : $EMAIL$
+    début                : 15/12/2022
+    copyright            : (C) 2022 par Théo Gaigé et Elie Tarassov
+    e-mail               : theo.gaige@insa-lyon.fr, elie.tarassov@insa-lyon.fr
 *************************************************************************/
 
 //---------- Réalisation de la classe <Liste> (fichier Liste.cpp) ------------
