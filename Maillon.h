@@ -31,7 +31,7 @@ public:
 //----------------------------------------------------- Méthodes publiques
     const Trajet * GetTrajet ( ) const;
     // Mode d'emploi :
-    // renvoie un pointeur sur le trajet contenu dans le maillon
+    // renvoie un pointeur const sur le trajet contenu dans le maillon
     // Contrat :
     //
 
