@@ -1,5 +1,5 @@
 /*************************************************************************
-                           Trajet  -  description
+        Trajet  -  trajet d'une ville de départ à une ville d'arrivée
                              -------------------
     début                : 15/12/2022
     copyright            : (C) 2022 par Théo Gaigé et Elie Tarassov
@@ -16,7 +16,6 @@ using namespace std;
 #include <cstring>
 
 //------------------------------------------------------ Include personnel
-
 #include "Trajet.h"
 #include "TrajetSimple.h"
 #include "Liste.h"
@@ -43,7 +42,7 @@ const char * Trajet::GetArrivee ( ) const
 
 const Trajet * Trajet::LireTrajet()
 // Algorithme :
-//
+// 
 {
     int choix;
     const Trajet * trajet = nullptr;
@@ -110,24 +109,8 @@ int Trajet::CompareArrivee ( const char * const arrivee ) const
 } //----- Fin de Méthode
 
 //------------------------------------------------- Surcharge d'opérateurs
-//Trajet & Trajet::operator = ( const Trajet & unTrajet )
-// Algorithme :
-//
-//{
-//} //----- Fin de operator =
-
 
 //-------------------------------------------- Constructeurs - destructeur
-//Trajet::Trajet ( const Trajet & unTrajet )
-// Algorithme :
-//
-//{
-//#ifdef MAP
-//    cout << "Appel au constructeur de copie de <Trajet>" << endl;
-//#endif
-//} //----- Fin de Trajet (constructeur de copie)
-
-
 Trajet::Trajet ( const char * const depart, const char * const arrivee )
     : depart(depart), arrivee(arrivee)
 // Algorithme :
