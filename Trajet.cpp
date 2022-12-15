@@ -58,7 +58,7 @@ const Trajet * Trajet::LireTrajet()
           break;
 
         case 1:
-          trajet = TrajetCompose::LireTrajetCompose();
+          trajet = TrajetCompose::LireTrajetComposeSimple();
           break;
 
         default:
