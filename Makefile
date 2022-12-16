@@ -4,6 +4,10 @@ DFLAGS = -DMAP
 OBJ = main.o Trajet.o TrajetSimple.o Maillon.o Liste.o TrajetCompose.o Catalogue.o
 EXE = main
 
+ifeq ($(MAKECMDGOALS), debug)
+	CFLAGS := $(CFLAGS) $(DFLAGS)
+endif
+
 $(EXE) : $(OBJ)
 	@echo edition des liens
 	$(CC) $(OBJ) -o $(EXE)
@@ -20,7 +24,9 @@ Liste.o : Liste.h Maillon.h Trajet.h
 TrajetCompose.o : TrajetCompose.h Trajet.h Liste.h
 Catalogue.o : Catalogue.h Trajet.h Liste.h
 
-.PHONY : remake clean
+.PHONY : remake clean debug
+
+debug : clean $(EXE)
 
 remake : clean $(EXE)
 
