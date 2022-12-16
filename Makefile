@@ -2,7 +2,7 @@ CC = g++
 CFLAGS = -c -ansi -pedantic -Wall -std=c++11
 DFLAGS = -DMAP
 OBJ = main.o Trajet.o TrajetSimple.o Maillon.o Liste.o TrajetCompose.o Catalogue.o
-EXE = trajet
+EXE = trajets
 
 ifeq ($(MAKECMDGOALS), debug)
 	CFLAGS := $(CFLAGS) $(DFLAGS)
