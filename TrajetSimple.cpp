@@ -51,6 +51,13 @@ const TrajetSimple * TrajetSimple::LireTrajetSimple()
   return new TrajetSimple(depart, arrivee, transport);
 } //----- Fin de Méthode
 
+void TrajetSimple::ExporterTrajet ( ofstream stream ) const
+// Algorithme :
+//
+{
+    stream << "s," << this->depart << "," << this->arrivee << "," <<  this->transport;
+} //----- Fin de Méthode
+
 Liste * TrajetSimple::GetListeTrajets ( ) const
 // Algorithme :
 //

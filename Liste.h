@@ -81,6 +81,12 @@ public:
     // Contrat :
     //
 
+    void ExporterTousTrajets (ofstream stream) const;
+    // Mode d'emploi :
+    // Exporte tous les trajets de la liste dans un fichier
+    // Contrat :
+    //
+
     Liste * Clone ( ) const;
     // Mode d'emploi :
     // Renvoie une copie non propriétaire de la liste

@@ -82,6 +82,19 @@ const TrajetCompose * TrajetCompose::LireTrajetComposeSimple()
   return new TrajetCompose(depart, etape, trajets);
 } //----- Fin de Méthode
 
+void TrajetCompose::ExporterTrajet ( ofstream stream ) const
+// Algorithme :
+//
+{
+    stream << "c," << this->depart << "," << this->arrivee << ",{";
+
+    // Afficher les trajets qui composent ce trajet composé
+    this->trajetsInternes.ExporterTousTrajets(stream);
+
+    stream << "}";
+
+} //----- Fin de Méthode
+
 Trajet * TrajetCompose::Clone ( ) const
 // Algorithme :
 //

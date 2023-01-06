@@ -45,6 +45,12 @@ public:
     // Contrat :
     //
 
+    virtual void ExporterTrajet ( ofstream stream ) const;
+    // Mode d'emploi :
+    // Exporte un trajet dans un fichier
+    // Contrat :
+    //
+
     virtual Trajet * Clone ( ) const;
     // Mode d'emploi :
     // Renvoie une copie du trajet composé
