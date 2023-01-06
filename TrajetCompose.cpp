@@ -90,7 +90,7 @@ void TrajetCompose::ExporterTrajet ( ofstream & stream ) const
     stream << "c," << this->depart << "," << this->arrivee << ",{";
 
     // Afficher les trajets qui composent ce trajet composé
-    this->trajetsInternes->ExporterTousTrajets(stream);
+    this->trajetsInternes->ExporterTrajetsEnLigne(stream);
 
     stream << "}";
 

@@ -192,7 +192,7 @@ const Liste * Liste::TrouverTrajetAvance (const char * const depart,
     return trajetsTrouves;
 } //----- Fin de Méthode TrouverTrajetAvance
 
-void Liste::ExporterTousTrajets (ofstream & stream) const
+void Liste::ExporterTrajetsEnLigne (ofstream & stream) const
 // Algorithme :
 //
 {
@@ -207,6 +207,20 @@ void Liste::ExporterTousTrajets (ofstream & stream) const
         {
             stream << ";";
         }
+    }
+} //----- Fin de Méthode ExporterTrajetsEnLigne
+
+void Liste::ExporterTousTrajets (ofstream & stream) const
+// Algorithme :
+//
+{
+    Maillon * maillon = this->premier;
+    
+    while(maillon != nullptr)
+    {
+        maillon->GetTrajet()->ExporterTrajet(stream);
+        maillon = maillon->GetSuivant();
+        stream << endl;
     }
 } //----- Fin de Méthode ExporterTousTrajets
 

@@ -1,6 +1,7 @@
 using namespace std;
 
 #include <iostream>
+#include <fstream>
 #include "Trajet.h"
 #include "Liste.h"
 #include "TrajetSimple.h"
@@ -13,13 +14,16 @@ int main()
     Catalogue c;
     char * depart, * arrivee;
     const Liste * trajetsTrouves;
+    ofstream stream;
     do
     {
       cout << "Menu :" << endl;
       cout << "0: Afficher les trajets" << endl;
       cout << "1: Ajouter un trajet" << endl;
-      cout << "2: Rechercher un trajet" << endl;
-      cout << "3: Quitter" << endl;
+      cout << "2: Importer des trajets" << endl;
+      cout << "3: Sauvegarder des trajets" << endl;
+      cout << "4: Rechercher un trajet" << endl;
+      cout << "5: Quitter" << endl;
       cin >> choix;
       switch (choix)
       {
@@ -32,6 +36,13 @@ int main()
           break;
 
         case 2:
+          
+          stream.open("test.txt");
+          //c.trajets->ExporterTousTrajets(stream);
+          stream.close();
+          break;
+
+        case 4:
           cout << "Rechercher un trajet :" << endl;
           depart = new char[51];
           arrivee = new char[51];
@@ -52,12 +63,12 @@ int main()
           delete[] arrivee;
           break;
 
-        case 3:
+        case 5:
           break;
 
         default:
           cout << "Input non reconnue" << endl;
       }
     }
-    while(choix != 3);
+    while(choix != 5);
 }

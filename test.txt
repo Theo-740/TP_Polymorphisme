@@ -1,0 +1,3 @@
+s,A,C,velo
+c,A,J,{s,A,C,camion;s,C,D,bus;s,D,J,roller}
+s,B,Z,trotinette
