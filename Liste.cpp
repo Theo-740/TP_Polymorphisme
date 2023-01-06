@@ -191,6 +191,24 @@ const Liste * Liste::TrouverTrajetAvance (const char * const depart,
     return trajetsTrouves;
 } //----- Fin de Méthode TrouverTrajetAvance
 
+void ExporterTousTrajets (ofstream stream) const
+// Algorithme :
+//
+{
+    Maillon * maillon = this->premier;
+    
+    while(maillon != nullptr)
+    {
+        maillon->GetTrajet()->ExporterTrajet(steam);
+        maillon = maillon->GetSuivant();
+        
+        if(maillon != nullptr)
+        {
+            stream << ";";
+        }
+    }
+} //----- Fin de Méthode ExporterTousTrajets
+
 Liste * Liste::Clone ( ) const
 // Algorithme :
 // Crée une liste vide non propriétaire et la remplit avec les trajets

@@ -61,6 +61,12 @@ public:
     // Contrat :
     //
 
+    virtual void ExporterTrajet ( ofstream stream ) const = 0;
+    // Mode d'emploi :
+    // Exporte un trajet dans un fichier
+    // Contrat :
+    //
+
     int Compare ( const Trajet & trajet) const;
     // Mode d'emploi :
     // Renvoie 0 si le départ et l'arrivée du trajet sont les mêmes que le
