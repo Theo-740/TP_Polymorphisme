@@ -58,6 +58,12 @@ public:
     // Contrat :
     //
 
+    bool AjouterToutFichier ( const char * nomFichier ) ;
+
+    bool AjouterTrajetsSimples ( const char * nomFichier ) ;
+
+    bool AjouterTrajetsComposes ( const char * nomFichier ) ;
+
 
 //------------------------------------------------- Surcharge d'opérateurs
 

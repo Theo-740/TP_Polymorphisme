@@ -14,6 +14,7 @@
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
+#include <fstream>
 
 //------------------------------------------------------ Include personnel
 #include "Trajet.h"
@@ -54,6 +55,75 @@ const Liste * Catalogue::TrouverTrajetAvance ( const char * const depart,
 {
     return this->trajets->TrouverTrajetAvance(depart, arrivee);
 } //----- Fin de Méthode
+
+bool Catalogue::AjouterToutFichier (const char * nomFichier) 
+
+{
+        ifstream in;
+        in.open( nomFichier );
+        if(in.fail()) {
+            return false;
+        }
+        char * description = new char[1000];
+        while(!in.eof()) {
+            in.getline(description,1000);
+            if(in.fail()) {
+                return false;
+            }
+            if(description[0]=='s') {
+                //Ajouter(new TrajetSimple(description));
+            } else if (description[0]=='c') {
+                //Ajouter(new TrajetCompose(description));
+            } else {
+                return false;
+            }
+        }
+}
+
+bool Catalogue::AjouterTrajetsSimples (const char * nomFichier) 
+
+{
+        ifstream in;
+        in.open( nomFichier );
+        if(in.fail()) {
+            return false;
+        }
+        char * description = new char[1000];
+        while(!in.eof()) {
+            in.getline(description,1000);
+            if(in.fail()) {
+                return false;
+            }
+            if(description[0]=='s') {
+                //Ajouter(new TrajetSimple(description));
+            } else if (description[0]!='c') {
+                return false;
+            }
+        }
+}
+
+bool Catalogue::AjouterTrajetsComposes (const char * nomFichier) 
+
+{
+        ifstream in;
+        in.open( nomFichier );
+        if(in.fail()) {
+            return false;
+        }
+        char * description = new char[1000];
+        while(!in.eof()) {
+            in.getline(description,1000);
+            if(in.fail()) {
+                return false;
+            }
+            if(description[0]=='c') {
+                //Ajouter(new TrajetCompose(description));
+            } else if (description[0]!='s') {
+                return false;
+            }
+        }
+}
+
 
 //------------------------------------------------- Surcharge d'opérateurs
 
