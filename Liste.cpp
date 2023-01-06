@@ -15,6 +15,7 @@
 using namespace std;
 #include <iostream>
 #include <cstring>
+#include <fstream>
 
 //------------------------------------------------------ Include personnel
 #include "Trajet.h"
@@ -191,7 +192,7 @@ const Liste * Liste::TrouverTrajetAvance (const char * const depart,
     return trajetsTrouves;
 } //----- Fin de Méthode TrouverTrajetAvance
 
-void ExporterTousTrajets (ofstream stream) const
+void Liste::ExporterTousTrajets (ofstream & stream) const
 // Algorithme :
 //
 {
@@ -199,7 +200,7 @@ void ExporterTousTrajets (ofstream stream) const
     
     while(maillon != nullptr)
     {
-        maillon->GetTrajet()->ExporterTrajet(steam);
+        maillon->GetTrajet()->ExporterTrajet(stream);
         maillon = maillon->GetSuivant();
         
         if(maillon != nullptr)

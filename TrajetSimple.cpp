@@ -15,6 +15,7 @@
 using namespace std;
 #include <iostream>
 #include <cstring>
+#include <fstream>
 
 //------------------------------------------------------ Include personnel
 #include "Trajet.h"
@@ -51,7 +52,7 @@ const TrajetSimple * TrajetSimple::LireTrajetSimple()
   return new TrajetSimple(depart, arrivee, transport);
 } //----- Fin de Méthode
 
-void TrajetSimple::ExporterTrajet ( ofstream stream ) const
+void TrajetSimple::ExporterTrajet ( ofstream & stream ) const
 // Algorithme :
 //
 {

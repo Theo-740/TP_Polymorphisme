@@ -61,7 +61,7 @@ public:
     // Contrat :
     //
 
-    virtual void ExporterTrajet ( ofstream stream ) const = 0;
+    virtual void ExporterTrajet ( ofstream & stream ) const = 0;
     // Mode d'emploi :
     // Exporte un trajet dans un fichier
     // Contrat :

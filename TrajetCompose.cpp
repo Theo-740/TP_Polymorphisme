@@ -15,6 +15,7 @@
 using namespace std;
 #include <iostream>
 #include <cstring>
+#include <fstream>
 
 //------------------------------------------------------ Include personnel
 #include "Trajet.h"
@@ -82,14 +83,14 @@ const TrajetCompose * TrajetCompose::LireTrajetComposeSimple()
   return new TrajetCompose(depart, etape, trajets);
 } //----- Fin de Méthode
 
-void TrajetCompose::ExporterTrajet ( ofstream stream ) const
+void TrajetCompose::ExporterTrajet ( ofstream & stream ) const
 // Algorithme :
 //
 {
     stream << "c," << this->depart << "," << this->arrivee << ",{";
 
     // Afficher les trajets qui composent ce trajet composé
-    this->trajetsInternes.ExporterTousTrajets(stream);
+    this->trajetsInternes->ExporterTousTrajets(stream);
 
     stream << "}";
 

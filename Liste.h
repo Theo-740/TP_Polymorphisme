@@ -81,7 +81,7 @@ public:
     // Contrat :
     //
 
-    void ExporterTousTrajets (ofstream stream) const;
+    void ExporterTousTrajets (ofstream & stream) const;
     // Mode d'emploi :
     // Exporte tous les trajets de la liste dans un fichier
     // Contrat :

@@ -15,6 +15,7 @@
 using namespace std;
 #include <iostream>
 #include <cstring>
+#include <fstream>
 
 //------------------------------------------------------ Include personnel
 #include "Trajet.h"

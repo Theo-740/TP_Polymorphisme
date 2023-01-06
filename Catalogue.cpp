@@ -78,6 +78,7 @@ bool Catalogue::AjouterToutFichier (const char * nomFichier)
                 return false;
             }
         }
+        return true;
 }
 
 bool Catalogue::AjouterTrajetsSimples (const char * nomFichier) 
@@ -100,6 +101,7 @@ bool Catalogue::AjouterTrajetsSimples (const char * nomFichier)
                 return false;
             }
         }
+        return true;
 }
 
 bool Catalogue::AjouterTrajetsComposes (const char * nomFichier) 
@@ -122,6 +124,7 @@ bool Catalogue::AjouterTrajetsComposes (const char * nomFichier)
                 return false;
             }
         }
+        return true;
 }
 
 
