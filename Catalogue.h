@@ -58,12 +58,11 @@ public:
     // Contrat :
     //
 
-    bool AjouterToutFichier ( const char * nomFichier ) ;
-
-    bool AjouterTrajetsSimples ( const char * nomFichier ) ;
-
-    bool AjouterTrajetsComposes ( const char * nomFichier ) ;
-
+    void ImporterTousTrajets (const char * nomFichier);
+    // Mode d'emploi :
+    // Importe tous les trajets depuis un fichier
+    // Contrat :
+    //
 
 //------------------------------------------------- Surcharge d'opérateurs
 

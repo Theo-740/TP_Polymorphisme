@@ -81,13 +81,25 @@ public:
     // Contrat :
     //
 
-    void ExporterTrajetsEnLigne (ofstream & stream) const;
+    void ImporterTousTrajets ( ifstream & stream );
     // Mode d'emploi :
-    // Exporte tous les trajets de la liste dans un fichier
+    // Importe tous les trajets depuis un fichier dans la liste
     // Contrat :
     //
 
-    void ExporterTousTrajets (ofstream & stream) const;
+    void ImporterTrajetsSimples ( ifstream & stream );
+    // Mode d'emploi :
+    // Importe seulement les trajets simples depuis un fichier dans la liste
+    // Contrat :
+    //
+
+    void ImporterTrajetsComposes ( ifstream & stream );
+    // Mode d'emploi :
+    // Importe seulement les trajets composés depuis un fichier dans la liste
+    // Contrat :
+    //
+
+    void ExporterTousTrajets ( ofstream & stream ) const;
     // Mode d'emploi :
     // Exporte tous les trajets de la liste dans un fichier
     // Contrat :

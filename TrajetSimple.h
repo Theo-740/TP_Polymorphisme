@@ -43,6 +43,8 @@ public:
     // Contrat :
     //
 
+    static const TrajetSimple * ImporterTrajet ( const char * const description );
+
     virtual void ExporterTrajet ( ofstream & stream ) const;
     // Mode d'emploi :
     // Exporte un trajet dans un fichier

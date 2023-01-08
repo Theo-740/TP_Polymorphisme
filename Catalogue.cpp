@@ -56,33 +56,27 @@ const Liste * Catalogue::TrouverTrajetAvance ( const char * const depart,
     return this->trajets->TrouverTrajetAvance(depart, arrivee);
 } //----- Fin de Méthode
 
-bool Catalogue::AjouterToutFichier (const char * nomFichier) 
-
+void Catalogue::ImporterTousTrajets (const char * nomFichier) 
+// Algorithme :
+//
 {
-        ifstream in;
-        in.open( nomFichier );
-        if(in.fail()) {
-            return false;
-        }
-        char * description = new char[1000];
-        while(!in.eof()) {
-            in.getline(description,1000);
-            if(in.fail()) {
-                return false;
-            }
-            if(description[0]=='s') {
-                //Ajouter(new TrajetSimple(description));
-            } else if (description[0]=='c') {
-                //Ajouter(new TrajetCompose(description));
-            } else {
-                return false;
-            }
-        }
-        return true;
-}
+        ifstream stream;
+        stream.open( nomFichier );
 
-bool Catalogue::AjouterTrajetsSimples (const char * nomFichier) 
+        if(!stream.fail())
+        {
+            cout << "ImporterTousTrajets catalogue" << endl;
+            this->trajets->ImporterTousTrajets(stream);
+        }
+        else
+        {
+            cout << "Le fichier ne peut pas être lu !" << endl;
+        }
+} //----- Fin de Méthode
 
+/*bool Catalogue::AjouterTrajetsSimples (const char * nomFichier) 
+// Algorithme :
+//
 {
         ifstream in;
         in.open( nomFichier );
@@ -102,10 +96,11 @@ bool Catalogue::AjouterTrajetsSimples (const char * nomFichier)
             }
         }
         return true;
-}
+} //----- Fin de Méthode
 
 bool Catalogue::AjouterTrajetsComposes (const char * nomFichier) 
-
+// Algorithme :
+//
 {
         ifstream in;
         in.open( nomFichier );
@@ -125,7 +120,7 @@ bool Catalogue::AjouterTrajetsComposes (const char * nomFichier)
             }
         }
         return true;
-}
+} //----- Fin de Méthode*/
 
 
 //------------------------------------------------- Surcharge d'opérateurs

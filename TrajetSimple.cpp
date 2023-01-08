@@ -39,18 +39,73 @@ const TrajetSimple * TrajetSimple::LireTrajetSimple()
 // Algorithme :
 //
 {
-  cout << "Creation d'un trajet simple :" << endl;
-  char * depart = new char[51];
-  char * arrivee = new char[51];
-  char * transport = new char[51];
-  cout << "Ville de départ :";
-  cin >> depart;
-  cout << "Mode de transport :";
-  cin >> transport;
-  cout << "Ville d'arrivée :";
-  cin >> arrivee;
-  return new TrajetSimple(depart, arrivee, transport);
+    cout << "Creation d'un trajet simple :" << endl;
+    char * depart = new char[51];
+    char * arrivee = new char[51];
+    char * transport = new char[51];
+    cout << "Ville de départ :";
+    cin >> depart;
+    cout << "Mode de transport :";
+    cin >> transport;
+    cout << "Ville d'arrivée :";
+    cin >> arrivee;
+    return new TrajetSimple(depart, arrivee, transport);
 } //----- Fin de Méthode
+
+const TrajetSimple * TrajetSimple::ImporterTrajet ( const char * const description )
+// Algorithme :
+//
+{
+    cout << "Import d'un trajet simple" << endl;
+    char * depart = new char[51];
+    char * arrivee = new char[51];
+    char * transport = new char[51];
+
+    int ecrire;
+    int positionSeparateur = 1;
+    int i;
+    int j;
+    for(i=0; i<3; ++i)
+    {
+        j = positionSeparateur + 1;
+        
+        do
+        {
+            ++positionSeparateur;
+        }
+        while(description[positionSeparateur] != ',' && description[positionSeparateur] != '!');
+
+        switch(i)
+        {
+            case 0:
+                ecrire = 0;
+                for( ; j<positionSeparateur; ++j, ++ecrire)
+                {
+                    depart[ecrire] = description[j];
+                }
+                break;
+
+            case 1:
+                ecrire = 0;
+                for( ; j<positionSeparateur; ++j, ++ecrire)
+                {
+                    arrivee[ecrire] = description[j];
+                }
+                break;
+
+            case 2:
+                ecrire = 0;
+                for( ; j<positionSeparateur; ++j, ++ecrire)
+                {
+                    transport[ecrire] = description[j];
+                }
+                break;
+        }
+    }
+
+    return new TrajetSimple(depart, arrivee, transport);
+    
+} //----- Fin de ImporterTrajet
 
 void TrajetSimple::ExporterTrajet ( ofstream & stream ) const
 // Algorithme :
@@ -95,7 +150,6 @@ TrajetSimple::TrajetSimple ( const char * const depart,
     cout << "Appel au constructeur de <TrajetSimple>" << endl;
 #endif
 } //----- Fin de TrajetSimple
-
 
 TrajetSimple::~TrajetSimple ( )
 // Algorithme :

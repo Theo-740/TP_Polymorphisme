@@ -21,6 +21,7 @@ using namespace std;
 #include "Trajet.h"
 #include "Maillon.h"
 #include "Liste.h"
+#include "TrajetSimple.h"
 #include "TrajetCompose.h"
 
 //------------------------------------------------------------- Constantes
@@ -192,7 +193,29 @@ const Liste * Liste::TrouverTrajetAvance (const char * const depart,
     return trajetsTrouves;
 } //----- Fin de Méthode TrouverTrajetAvance
 
-void Liste::ExporterTrajetsEnLigne (ofstream & stream) const
+void Liste::ImporterTousTrajets ( ifstream & stream )
+// Algorithme :
+//
+{
+    cout << "ImporterTousTrajets liste" << endl;
+    char * description = new char[1000];
+
+    while(!stream.eof())
+    {
+        stream.getline(description,1000);
+
+        if(description[0]=='s') {
+            this->AjouterEnPlace(TrajetSimple::ImporterTrajet(description));
+        }
+        else if (description[0]=='c') 
+        {
+            //this->AjouterEnPlace(TrajetCompose::ImporterTrajet(description));
+            cout << "Import d'un trajet composé" << endl;
+        }
+    }
+} //----- Fin de Méthode ImporterTousTrajets
+
+void Liste::ExporterTousTrajets (ofstream & stream) const
 // Algorithme :
 //
 {
@@ -207,20 +230,6 @@ void Liste::ExporterTrajetsEnLigne (ofstream & stream) const
         {
             stream << ";";
         }
-    }
-} //----- Fin de Méthode ExporterTrajetsEnLigne
-
-void Liste::ExporterTousTrajets (ofstream & stream) const
-// Algorithme :
-//
-{
-    Maillon * maillon = this->premier;
-    
-    while(maillon != nullptr)
-    {
-        maillon->GetTrajet()->ExporterTrajet(stream);
-        maillon = maillon->GetSuivant();
-        stream << endl;
     }
 } //----- Fin de Méthode ExporterTousTrajets
 
