@@ -65,7 +65,6 @@ void Catalogue::ImporterTousTrajets (const char * nomFichier)
 
         if(!stream.fail())
         {
-            cout << "ImporterTousTrajets catalogue" << endl;
             this->trajets->ImporterTousTrajets(stream);
         }
         else

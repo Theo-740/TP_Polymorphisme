@@ -14,6 +14,6 @@ int main()
 
     c.ImporterTousTrajets(fichier);
 
-    cout << endl << "Affichage du catalogue :" << endl;
+    cout << "Affichage du catalogue :" << endl;
     c.Afficher();
 }

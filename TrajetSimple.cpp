@@ -52,56 +52,17 @@ const TrajetSimple * TrajetSimple::LireTrajetSimple()
     return new TrajetSimple(depart, arrivee, transport);
 } //----- Fin de Méthode
 
-const TrajetSimple * TrajetSimple::ImporterTrajet ( const char * const description )
+const TrajetSimple * TrajetSimple::ImporterTrajet ( ifstream & stream )
 // Algorithme :
 //
 {
-    cout << "Import d'un trajet simple" << endl;
     char * depart = new char[51];
     char * arrivee = new char[51];
     char * transport = new char[51];
 
-    int ecrire;
-    int positionSeparateur = 1;
-    int i;
-    int j;
-    for(i=0; i<3; ++i)
-    {
-        j = positionSeparateur + 1;
-        
-        do
-        {
-            ++positionSeparateur;
-        }
-        while(description[positionSeparateur] != ',' && description[positionSeparateur] != '!');
-
-        switch(i)
-        {
-            case 0:
-                ecrire = 0;
-                for( ; j<positionSeparateur; ++j, ++ecrire)
-                {
-                    depart[ecrire] = description[j];
-                }
-                break;
-
-            case 1:
-                ecrire = 0;
-                for( ; j<positionSeparateur; ++j, ++ecrire)
-                {
-                    arrivee[ecrire] = description[j];
-                }
-                break;
-
-            case 2:
-                ecrire = 0;
-                for( ; j<positionSeparateur; ++j, ++ecrire)
-                {
-                    transport[ecrire] = description[j];
-                }
-                break;
-        }
-    }
+    stream.getline(depart,51,',');
+    stream.getline(arrivee,51,',');
+    stream.getline(transport,51,';');
 
     return new TrajetSimple(depart, arrivee, transport);
     

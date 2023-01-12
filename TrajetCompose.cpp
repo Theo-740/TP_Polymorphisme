@@ -34,14 +34,14 @@ void TrajetCompose::Afficher ( ) const
 {
     cout << "Trajet de " << depart << " à " << arrivee  << " composé de ";
     this->trajetsInternes->AfficherEnLigne();
-} //----- Fin de Méthode
+} //----- Fin de Afficher
 
 Liste * TrajetCompose::GetListeTrajets ( ) const
 // Algorithme :
 //
 {
     return this->trajetsInternes->Clone();
-} //----- Fin de Méthode
+} //----- Fin de GetListeTrajets
 
 const TrajetCompose * TrajetCompose::LireTrajetComposeSimple()
 // Algorithme :
@@ -81,7 +81,47 @@ const TrajetCompose * TrajetCompose::LireTrajetComposeSimple()
   while (choix != 1);
 
   return new TrajetCompose(depart, etape, trajets);
-} //----- Fin de Méthode
+} //----- Fin de LireTrajetComposeSimple
+
+const TrajetCompose * TrajetCompose::ImporterTrajet ( ifstream & stream )
+// Algorithme :
+//
+{
+    char * depart = new char[51];
+    char * arrivee = new char[51];
+    Liste * trajets = new Liste;
+
+    char * tmp = new char[200];
+    int tCompose = 0;
+
+    stream.getline(depart,51,',');
+    stream.getline(arrivee,51,',');
+
+    stream.getline(tmp,51,'{');
+
+    while((stream.peek()!='}' && tCompose!=1) || (stream.peek()=='}' && tCompose==1))
+    {
+        if((stream.peek()=='}' && tCompose==1))
+        {
+            stream.getline(tmp,200,'}');
+        }
+
+        stream.getline(tmp,200,',');
+
+        if(tmp[0]=='s')
+        {
+            trajets->AjouterEnPlace(TrajetSimple::ImporterTrajet(stream));
+            tCompose = 0;
+        }
+        else if (tmp[0]=='c')
+        {
+            trajets->AjouterEnPlace(TrajetCompose::ImporterTrajet(stream));
+            tCompose = 1;
+        }
+    }
+
+    return new TrajetCompose(depart, arrivee, trajets);
+} //----- Fin de ImporterTrajet
 
 void TrajetCompose::ExporterTrajet ( ofstream & stream ) const
 // Algorithme :
@@ -94,7 +134,7 @@ void TrajetCompose::ExporterTrajet ( ofstream & stream ) const
 
     stream << "}";
 
-} //----- Fin de Méthode
+} //----- Fin de ExporterTrajet
 
 Trajet * TrajetCompose::Clone ( ) const
 // Algorithme :
@@ -105,7 +145,7 @@ Trajet * TrajetCompose::Clone ( ) const
   char * a = new char[51];
   strcpy(a, this->arrivee);
   return new TrajetCompose(d, a, this->trajetsInternes->Clone());
-} //----- Fin de Méthode
+} //----- Fin de Clone
 
 //------------------------------------------------- Surcharge d'opérateurs
 

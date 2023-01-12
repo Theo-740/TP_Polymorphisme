@@ -61,7 +61,7 @@ void Liste::AfficherEnLigne ( ) const
     while(maillon->GetSuivant() != nullptr)
         {
             maillon->GetTrajet()->Afficher();
-            cout << " ,";
+            cout << ", ";
             maillon = maillon->GetSuivant();
         }
         maillon->GetTrajet()->Afficher();
@@ -197,21 +197,21 @@ void Liste::ImporterTousTrajets ( ifstream & stream )
 // Algorithme :
 //
 {
-    cout << "ImporterTousTrajets liste" << endl;
-    char * description = new char[1000];
+    char * tmp = new char[1000];
 
     while(!stream.eof())
     {
-        stream.getline(description,1000);
+        stream.getline(tmp,1000,',');
 
-        if(description[0]=='s') {
-            this->AjouterEnPlace(TrajetSimple::ImporterTrajet(description));
+        if(tmp[0]=='s') {
+            this->AjouterEnPlace(TrajetSimple::ImporterTrajet(stream));
         }
-        else if (description[0]=='c') 
+        else if (tmp[0]=='c') 
         {
-            //this->AjouterEnPlace(TrajetCompose::ImporterTrajet(description));
-            cout << "Import d'un trajet composé" << endl;
+            this->AjouterEnPlace(TrajetCompose::ImporterTrajet(stream));
         }
+
+        stream.getline(tmp,200);
     }
 } //----- Fin de Méthode ImporterTousTrajets
 
