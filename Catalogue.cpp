@@ -73,52 +73,38 @@ void Catalogue::ImporterTousTrajets (const char * nomFichier)
         }
 } //----- Fin de Méthode
 
-/*bool Catalogue::AjouterTrajetsSimples (const char * nomFichier) 
+void Catalogue::ImporterTSimples (const char * nomFichier) 
 // Algorithme :
 //
 {
-        ifstream in;
-        in.open( nomFichier );
-        if(in.fail()) {
-            return false;
+        ifstream stream;
+        stream.open( nomFichier );
+        
+        if(!stream.fail())
+        {
+            this->trajets->ImporterTSimples(stream);
         }
-        char * description = new char[1000];
-        while(!in.eof()) {
-            in.getline(description,1000);
-            if(in.fail()) {
-                return false;
-            }
-            if(description[0]=='s') {
-                //Ajouter(new TrajetSimple(description));
-            } else if (description[0]!='c') {
-                return false;
-            }
+        else
+        {
+            cout << "Le fichier ne peut pas être lu !" << endl;
         }
-        return true;
 } //----- Fin de Méthode
 
-bool Catalogue::AjouterTrajetsComposes (const char * nomFichier) 
+void Catalogue::ImporterTComposes (const char * nomFichier) 
 // Algorithme :
 //
 {
-        ifstream in;
-        in.open( nomFichier );
-        if(in.fail()) {
-            return false;
+        ifstream stream;
+        stream.open( nomFichier );
+        
+        if(!stream.fail())
+        {
+            this->trajets->ImporterTComposes(stream);
         }
-        char * description = new char[1000];
-        while(!in.eof()) {
-            in.getline(description,1000);
-            if(in.fail()) {
-                return false;
-            }
-            if(description[0]=='c') {
-                //Ajouter(new TrajetCompose(description));
-            } else if (description[0]!='s') {
-                return false;
-            }
+        else
+        {
+            cout << "Le fichier ne peut pas être lu !" << endl;
         }
-        return true;
 } //----- Fin de Méthode*/
 
 

@@ -87,13 +87,13 @@ public:
     // Contrat :
     //
 
-    void ImporterTrajetsSimples ( ifstream & stream );
+    void ImporterTSimples ( ifstream & stream );
     // Mode d'emploi :
     // Importe seulement les trajets simples depuis un fichier dans la liste
     // Contrat :
     //
 
-    void ImporterTrajetsComposes ( ifstream & stream );
+    void ImporterTComposes ( ifstream & stream );
     // Mode d'emploi :
     // Importe seulement les trajets composés depuis un fichier dans la liste
     // Contrat :

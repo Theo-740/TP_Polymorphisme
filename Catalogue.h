@@ -64,6 +64,18 @@ public:
     // Contrat :
     //
 
+    void ImporterTSimples (const char * nomFichier);
+    // Mode d'emploi :
+    // Importe seulement les trajets simples depuis un fichier
+    // Contrat :
+    //
+
+    void ImporterTComposes (const char * nomFichier);
+    // Mode d'emploi :
+    // Importe seulement les trajets composés depuis un fichier
+    // Contrat :
+    //
+
 //------------------------------------------------- Surcharge d'opérateurs
 
 //-------------------------------------------- Constructeurs - destructeur
