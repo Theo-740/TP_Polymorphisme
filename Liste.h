@@ -30,6 +30,8 @@ class Liste
 //----------------------------------------------------------------- PUBLIC
 
 public:
+    enum TypeTrajet { ALL, TS, TC };
+
 //----------------------------------------------------- Méthodes publiques
     void Afficher ( ) const;
     // Mode d'emploi :
@@ -81,6 +83,16 @@ public:
     // Contrat :
     //
 
+    void ImporterTrajets ( ifstream & stream, int typeTrajet, 
+                           const char * depart, const char * arrivee,
+                           int debut, int fin );
+    // Mode d'emploi :
+    // Importe des trajets depuis un fichier suivant les paramètres
+    // spécifiés par l'utilisateur
+    // Contrat :
+    //
+
+    /*
     void ImporterTousTrajets ( ifstream & stream );
     // Mode d'emploi :
     // Importe tous les trajets depuis un fichier dans la liste
@@ -98,6 +110,14 @@ public:
     // Importe seulement les trajets composés depuis un fichier dans la liste
     // Contrat :
     //
+
+    void ImporterSelection ( ifstream & stream, int debut, int fin );
+    // Mode d'emploi :
+    // Importe seulement les trajets compris entre une position debut et fin
+    // Le premier trajet présent dans le fichier est le trajet 1
+    // Contrat :
+    //
+    */
 
     void ExporterTousTrajets ( ofstream & stream ) const;
     // Mode d'emploi :

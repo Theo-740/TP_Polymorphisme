@@ -12,7 +12,7 @@ int main()
     Catalogue c;
     char * fichier = "import.txt";
 
-    c.ImporterTComposes(fichier);
+    c.ImporterTrajets(fichier,Liste::TS,"","",3,4);
 
     cout << "Affichage du catalogue :" << endl;
     c.Afficher();

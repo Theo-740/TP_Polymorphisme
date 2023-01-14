@@ -42,39 +42,57 @@ public:
     // Contrat :
     //
 
-    const Liste * TrouverTrajet (const char * const depart, 
-                                 const char * const arrivee ) const;
+    const Liste * TrouverTrajet ( const char * const depart, 
+                                  const char * const arrivee ) const;
     // Mode d'emploi :
     // Renvoie les trajets contenus dans le catalogue qui ont comme départ
     // le départ spécifié et comme arrivée l'arrivée spécifiée
     // Contrat :
     //
 
-    const Liste * TrouverTrajetAvance (const char * const depart, 
-                                       const char * const arrivee ) const;
+    const Liste * TrouverTrajetAvance ( const char * const depart, 
+                                        const char * const arrivee ) const;
     // Mode d'emploi :
     // Renvoie les compositions d'au moins deux trajets du catalogue qui 
     // vont du départ spécifié à l'arrivée spécifiée
     // Contrat :
     //
 
-    void ImporterTousTrajets (const char * nomFichier);
+    void ImporterTrajets ( const char * nomFichier, int typeTrajet = 0, 
+                           const char * depart = "", const char * arrivee = "",
+                           int debut = -1, int fin = -1 );
+    // Mode d'emploi :
+    // Importe des trajets depuis un fichier suivant les paramètres
+    // spécifiés par l'utilisateur
+    // Contrat :
+    //
+
+    /*
+    void ImporterTousTrajets ( const char * nomFichier );
     // Mode d'emploi :
     // Importe tous les trajets depuis un fichier
     // Contrat :
     //
 
-    void ImporterTSimples (const char * nomFichier);
+    void ImporterTSimples ( const char * nomFichier );
     // Mode d'emploi :
     // Importe seulement les trajets simples depuis un fichier
     // Contrat :
     //
 
-    void ImporterTComposes (const char * nomFichier);
+    void ImporterTComposes ( const char * nomFichier );
     // Mode d'emploi :
     // Importe seulement les trajets composés depuis un fichier
     // Contrat :
     //
+
+    void ImporterSelection ( const char * nomFichier, int debut, int fin );
+    // Mode d'emploi :
+    // Importe seulement les trajets compris entre une position debut et fin
+    // Le premier trajet présent dans le fichier est le trajet 1
+    // Contrat :
+    //
+    */
 
 //------------------------------------------------- Surcharge d'opérateurs
 

@@ -193,6 +193,39 @@ const Liste * Liste::TrouverTrajetAvance (const char * const depart,
     return trajetsTrouves;
 } //----- Fin de Méthode TrouverTrajetAvance
 
+void Liste::ImporterTrajets ( ifstream & stream, int typeTrajet, 
+                              const char * depart, const char * arrivee,
+                              int debut, int fin )
+// Algorithme :
+//
+{
+    char * tmp = new char[1000];
+    int index = 1;
+
+    while(!stream.eof())
+    {
+        stream.getline(tmp,1000,',');
+
+        // Test si on est dans l'intervalle demandé
+        if((debut<=index && index<=fin) || debut==-1)
+        {
+            // Test si TS ou TC demandés
+            if(tmp[0]=='s' && (typeTrajet==ALL || typeTrajet==TS))
+            {
+                this->AjouterEnPlace(TrajetSimple::ImporterTrajet(stream));
+            }
+            else if (tmp[0]=='c' && (typeTrajet==ALL || typeTrajet==TC)) 
+            {
+                this->AjouterEnPlace(TrajetCompose::ImporterTrajet(stream));
+            }
+        }
+
+        stream.getline(tmp,200);
+        ++index;
+    }
+} //----- Fin de ImporterTrajets
+
+/*
 void Liste::ImporterTousTrajets ( ifstream & stream )
 // Algorithme :
 //
@@ -232,7 +265,7 @@ void Liste::ImporterTSimples ( ifstream & stream )
         }
         else if (tmp[0]=='c') 
         {
-            stream.getline(tmp,1000,'}');
+            //stream.getline(tmp,1000,'}');
         }
 
         stream.getline(tmp,200);
@@ -249,9 +282,9 @@ void Liste::ImporterTComposes ( ifstream & stream )
     {
         stream.getline(tmp,1000,',');
 
-        if(tmp[0]=='s') 
+        if(tmp[0]=='s')
         {
-            stream.getline(tmp,1000,';');
+            //stream.getline(tmp,1000,';');
         }
         else if (tmp[0]=='c') 
         {
@@ -261,6 +294,35 @@ void Liste::ImporterTComposes ( ifstream & stream )
         stream.getline(tmp,200);
     }
 } //----- Fin de ImporterTComposes
+
+void Liste::ImporterSelection ( ifstream & stream, int debut, int fin )
+// Algorithme :
+//
+{
+    char * tmp = new char[1000];
+    int index = 1;
+
+    while(!stream.eof())
+    {
+        stream.getline(tmp,1000,',');
+
+        if(debut<=index && index<=fin)
+            {
+            if(tmp[0]=='s')
+            {
+                this->AjouterEnPlace(TrajetSimple::ImporterTrajet(stream));
+            }
+            else if (tmp[0]=='c') 
+            {
+                this->AjouterEnPlace(TrajetCompose::ImporterTrajet(stream));
+            }
+        }
+
+        stream.getline(tmp,200);
+        ++index;
+    }
+} //----- Fin de ImporterSelection
+*/
 
 void Liste::ExporterTousTrajets (ofstream & stream) const
 // Algorithme :
