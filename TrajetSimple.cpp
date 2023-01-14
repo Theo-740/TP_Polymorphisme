@@ -52,7 +52,9 @@ const TrajetSimple * TrajetSimple::LireTrajetSimple()
     return new TrajetSimple(depart, arrivee, transport);
 } //----- Fin de Méthode
 
-const TrajetSimple * TrajetSimple::ImporterTrajet ( ifstream & stream )
+const TrajetSimple * TrajetSimple::ImporterTrajet ( ifstream & stream, 
+                                                    const char * selectDepart, 
+                                                    const char * selectArrivee )
 // Algorithme :
 //
 {
@@ -64,15 +66,24 @@ const TrajetSimple * TrajetSimple::ImporterTrajet ( ifstream & stream )
     stream.getline(arrivee,51,',');
     stream.getline(transport,51,';');
 
+    if( ((strcmp(depart,selectDepart)!=0 && strcmp(selectDepart,"")!=0))
+     || ((strcmp(arrivee,selectArrivee)!=0 && strcmp(selectArrivee,"")!=0)) )
+    {
+        TrajetSimple * fail = nullptr;
+        cout << "fail" << endl;
+        return fail;
+    }
+
     return new TrajetSimple(depart, arrivee, transport);
-    
 } //----- Fin de ImporterTrajet
 
 void TrajetSimple::ExporterTrajet ( ofstream & stream ) const
 // Algorithme :
 //
 {
-    stream << "s," << this->depart << "," << this->arrivee << "," <<  this->transport;
+    stream << "s,";
+    stream << this->depart << "," << this->arrivee << "," << this->transport;
+    stream << ";";
 } //----- Fin de Méthode
 
 Liste * TrajetSimple::GetListeTrajets ( ) const

@@ -18,6 +18,8 @@
 //------------------------------------------------------------------ Types
 class Maillon;
 class Trajet;
+class Catalogue;
+class TrajetCompose;
 
 //------------------------------------------------------------------------
 // Rôle de la classe <Liste>
@@ -30,8 +32,6 @@ class Liste
 //----------------------------------------------------------------- PUBLIC
 
 public:
-    enum TypeTrajet { ALL, TS, TC };
-
 //----------------------------------------------------- Méthodes publiques
     void Afficher ( ) const;
     // Mode d'emploi :
@@ -92,34 +92,7 @@ public:
     // Contrat :
     //
 
-    /*
-    void ImporterTousTrajets ( ifstream & stream );
-    // Mode d'emploi :
-    // Importe tous les trajets depuis un fichier dans la liste
-    // Contrat :
-    //
-
-    void ImporterTSimples ( ifstream & stream );
-    // Mode d'emploi :
-    // Importe seulement les trajets simples depuis un fichier dans la liste
-    // Contrat :
-    //
-
-    void ImporterTComposes ( ifstream & stream );
-    // Mode d'emploi :
-    // Importe seulement les trajets composés depuis un fichier dans la liste
-    // Contrat :
-    //
-
-    void ImporterSelection ( ifstream & stream, int debut, int fin );
-    // Mode d'emploi :
-    // Importe seulement les trajets compris entre une position debut et fin
-    // Le premier trajet présent dans le fichier est le trajet 1
-    // Contrat :
-    //
-    */
-
-    void ExporterTousTrajets ( ofstream & stream ) const;
+    void ExporterTrajets ( ofstream & stream ) const;
     // Mode d'emploi :
     // Exporte tous les trajets de la liste dans un fichier
     // Contrat :
@@ -130,6 +103,10 @@ public:
     // Renvoie une copie non propriétaire de la liste
     // Contrat :
     //
+
+    friend class Catalogue;
+
+    friend class TrajetCompose;
 
 //------------------------------------------------- Surcharge d'opérateurs
 

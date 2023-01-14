@@ -43,7 +43,9 @@ public:
     // Contrat :
     //
 
-    static const TrajetSimple * ImporterTrajet ( ifstream & stream );
+    static const TrajetSimple * ImporterTrajet ( ifstream & stream,
+                                                 const char * selectDepart = "", 
+                                                 const char * selectArrivee = "" );
     // Mode d'emploi :
     // Importe un trajet simple depuis un fichier
     // Contrat :

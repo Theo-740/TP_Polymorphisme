@@ -1,6 +1,7 @@
 using namespace std;
 
 #include <iostream>
+#include <cstring>
 #include "Trajet.h"
 #include "Liste.h"
 #include "TrajetSimple.h"
@@ -10,10 +11,14 @@ using namespace std;
 int main() 
 {
     Catalogue c;
-    char * fichier = "import.txt";
+    char * importFile = "1_import.txt";
+    char * exportFile = "2_export.txt";
 
-    c.ImporterTrajets(fichier,Liste::TS,"","",3,4);
+    // Catalogue::ALL/TS/TC
+    c.ImporterTrajets(importFile);
 
     cout << "Affichage du catalogue :" << endl;
     c.Afficher();
+
+    c.ExporterTrajets(exportFile,Catalogue::TS);
 }

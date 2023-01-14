@@ -28,6 +28,8 @@ class Catalogue
 //----------------------------------------------------------------- PUBLIC
 
 public:
+    enum TypeTrajet { ALL, TS, TC };
+
 //----------------------------------------------------- Méthodes publiques
     void Afficher ( ) const;
     // Mode d'emploi :
@@ -58,7 +60,7 @@ public:
     // Contrat :
     //
 
-    void ImporterTrajets ( const char * nomFichier, int typeTrajet = 0, 
+    void ImporterTrajets ( const char * nomFichier, int typeTrajet = Catalogue::ALL, 
                            const char * depart = "", const char * arrivee = "",
                            int debut = -1, int fin = -1 );
     // Mode d'emploi :
@@ -67,32 +69,14 @@ public:
     // Contrat :
     //
 
-    /*
-    void ImporterTousTrajets ( const char * nomFichier );
+    void ExporterTrajets ( const char * nomFichier, int typeTrajet = Catalogue::ALL, 
+                           const char * depart = "", const char * arrivee = "",
+                           int debut = -1, int fin = -1 );
     // Mode d'emploi :
-    // Importe tous les trajets depuis un fichier
+    // Exporte des trajets dans un fichier suivant les paramètres
+    // spécifiés par l'utilisateur
     // Contrat :
     //
-
-    void ImporterTSimples ( const char * nomFichier );
-    // Mode d'emploi :
-    // Importe seulement les trajets simples depuis un fichier
-    // Contrat :
-    //
-
-    void ImporterTComposes ( const char * nomFichier );
-    // Mode d'emploi :
-    // Importe seulement les trajets composés depuis un fichier
-    // Contrat :
-    //
-
-    void ImporterSelection ( const char * nomFichier, int debut, int fin );
-    // Mode d'emploi :
-    // Importe seulement les trajets compris entre une position debut et fin
-    // Le premier trajet présent dans le fichier est le trajet 1
-    // Contrat :
-    //
-    */
 
 //------------------------------------------------- Surcharge d'opérateurs
 

@@ -15,11 +15,15 @@
 using namespace std;
 #include <iostream>
 #include <fstream>
+#include <typeinfo>
 
 //------------------------------------------------------ Include personnel
 #include "Trajet.h"
-#include "Liste.h"
+#include "TrajetSimple.h"
+#include "TrajetCompose.h"
 #include "Catalogue.h"
+#include "Liste.h"
+#include "Maillon.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -67,85 +71,96 @@ void Catalogue::ImporterTrajets ( const char * nomFichier, int typeTrajet,
 
     if(!stream.fail())
     {
-        this->trajets->ImporterTrajets(stream, typeTrajet,
-                                       depart, arrivee,
-                                       debut, fin);
+        char * tmp = new char[1000];
+        int index = 1;
+
+        while(!stream.eof())
+        {
+            stream.getline(tmp,1000,',');
+
+            // Test si on est dans l'intervalle demandé
+            if((debut<=index && index<=fin) || debut==-1)
+            {
+                // Test si TS ou TC demandés
+                if(tmp[0]=='s' && (typeTrajet==ALL || typeTrajet==TS))
+                {
+                    const TrajetSimple * ts = TrajetSimple::ImporterTrajet(stream,depart,arrivee);
+                    
+                    if(ts != nullptr)
+                    {
+                    this->trajets->AjouterEnPlace(ts);
+                    }
+                
+                }
+                else if (tmp[0]=='c' && (typeTrajet==ALL || typeTrajet==TC)) 
+                {
+                    const TrajetCompose * tc = TrajetCompose::ImporterTrajet(stream,depart,arrivee);
+                    
+                    if(tc != nullptr)
+                    {
+                        this->trajets->AjouterEnPlace(tc);
+                    }
+
+                }
+            }
+
+            stream.getline(tmp,200);
+            ++index;
+        }
+
+        delete(tmp);
     }
     else
     {
-        cout << "Le fichier ne peut pas être lu !" << endl;
+        cout << "Le fichier ne peut pas être ouvert !" << endl;
     }
-} //----- Fin de Méthode
+} //----- Fin de ImporterTrajets
 
-/*
-void Catalogue::ImporterTousTrajets (const char * nomFichier) 
+void Catalogue::ExporterTrajets ( const char * nomFichier, int typeTrajet, 
+                                  const char * depart, const char * arrivee,
+                                  int debut, int fin )
 // Algorithme :
 //
 {
-    ifstream stream;
+    ofstream stream;
     stream.open( nomFichier );
 
     if(!stream.fail())
     {
-        this->trajets->ImporterTousTrajets(stream);
+        Maillon * maillon = this->trajets->premier;
+        char * tmp = new char[1000];
+        int index = 1;
+    
+        while(maillon != nullptr)
+        {
+            // Test si on est dans l'intervalle demandé
+            if((debut<=index && index<=fin) || debut==-1)
+            {
+                // Test si TS ou TC demandés
+                if( typeid(*(maillon->GetTrajet()))==typeid(TrajetSimple)
+                    && (typeTrajet==ALL || typeTrajet==TS) )
+                {
+                    maillon->GetTrajet()->ExporterTrajet(stream);
+                    stream << "\r\n";
+                }
+                else if( typeid(*(maillon->GetTrajet()))==typeid(TrajetCompose)
+                         && (typeTrajet==ALL || typeTrajet==TC) ) 
+                {
+                    maillon->GetTrajet()->ExporterTrajet(stream);
+                    stream << "\r\n";
+                }
+            }
+
+            maillon = maillon->GetSuivant();
+        }
+
+        delete(tmp);
     }
     else
     {
-        cout << "Le fichier ne peut pas être lu !" << endl;
+        cout << "Le fichier ne peut pas être ouvert !" << endl;
     }
-} //----- Fin de Méthode
-
-void Catalogue::ImporterTSimples (const char * nomFichier) 
-// Algorithme :
-//
-{
-    ifstream stream;
-    stream.open( nomFichier );
-        
-    if(!stream.fail())
-    {
-        this->trajets->ImporterTSimples(stream);
-    }
-    else
-    {
-        cout << "Le fichier ne peut pas être lu !" << endl;
-    }
-} //----- Fin de ImporterTSimples
-
-void Catalogue::ImporterTComposes (const char * nomFichier) 
-// Algorithme :
-//
-{
-    ifstream stream;
-    stream.open( nomFichier );
-        
-    if(!stream.fail())
-    {
-        this->trajets->ImporterTComposes(stream);
-    }
-    else
-    {
-        cout << "Le fichier ne peut pas être lu !" << endl;
-    }
-} //----- Fin de ImporterTComposes
-
-void Catalogue::ImporterSelection ( const char * nomFichier, int debut, int fin )
-// Algorithme :
-//
-{
-    ifstream stream;
-    stream.open( nomFichier );
-
-    if(!stream.fail())
-    {
-        this->trajets->ImporterSelection(stream, debut, fin);
-    }
-    else
-    {
-        cout << "Le fichier ne peut pas être lu !" << endl;
-    }
-} //----- Fin de ImporterSelection
-*/
+} //----- Fin de ExporterTousTrajets
 
 //------------------------------------------------- Surcharge d'opérateurs
 

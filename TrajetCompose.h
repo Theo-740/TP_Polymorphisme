@@ -45,7 +45,9 @@ public:
     // Contrat :
     //
 
-    static const TrajetCompose * ImporterTrajet ( ifstream & stream );
+    static const TrajetCompose * ImporterTrajet ( ifstream & stream,
+                                                  const char * selectDepart = "", 
+                                                  const char * selectArrivee = "" );
     // Mode d'emploi :
     // Importe un trajet composé depuis un fichier
     // Contrat :

@@ -22,6 +22,7 @@ using namespace std;
 #include "TrajetSimple.h"
 #include "TrajetCompose.h"
 #include "Liste.h"
+#include "Maillon.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -83,7 +84,9 @@ const TrajetCompose * TrajetCompose::LireTrajetComposeSimple()
   return new TrajetCompose(depart, etape, trajets);
 } //----- Fin de LireTrajetComposeSimple
 
-const TrajetCompose * TrajetCompose::ImporterTrajet ( ifstream & stream )
+const TrajetCompose * TrajetCompose::ImporterTrajet ( ifstream & stream,
+                                                      const char * selectDepart, 
+                                                      const char * selectArrivee )
 // Algorithme :
 //
 {
@@ -97,9 +100,18 @@ const TrajetCompose * TrajetCompose::ImporterTrajet ( ifstream & stream )
     stream.getline(depart,51,',');
     stream.getline(arrivee,51,',');
 
+    if( ((strcmp(depart,selectDepart)!=0 && strcmp(selectDepart,"")!=0))
+     || ((strcmp(arrivee,selectArrivee)!=0 && strcmp(selectArrivee,"")!=0)) )
+    {
+        TrajetCompose * fail = nullptr;
+        cout << "fail" << endl;
+        return fail;
+    }
+
     stream.getline(tmp,51,'{');
 
-    while((stream.peek()!='}' && tCompose!=1) || (stream.peek()=='}' && tCompose==1))
+    while( (stream.peek()!='}' && tCompose!=1)
+        || (stream.peek()=='}' && tCompose==1) )
     {
         if((stream.peek()=='}' && tCompose==1))
         {
@@ -110,16 +122,22 @@ const TrajetCompose * TrajetCompose::ImporterTrajet ( ifstream & stream )
 
         if(tmp[0]=='s')
         {
-            trajets->AjouterEnPlace(TrajetSimple::ImporterTrajet(stream));
+            trajets->AjouterEnPlace(
+                TrajetSimple::ImporterTrajet(stream)
+            );
             tCompose = 0;
         }
         else if (tmp[0]=='c')
         {
-            trajets->AjouterEnPlace(TrajetCompose::ImporterTrajet(stream));
+            trajets->AjouterEnPlace(
+                TrajetCompose::ImporterTrajet(stream)
+            );
             tCompose = 1;
         }
     }
 
+    delete(tmp);
+    
     return new TrajetCompose(depart, arrivee, trajets);
 } //----- Fin de ImporterTrajet
 
@@ -129,8 +147,14 @@ void TrajetCompose::ExporterTrajet ( ofstream & stream ) const
 {
     stream << "c," << this->depart << "," << this->arrivee << ",{";
 
-    // Afficher les trajets qui composent ce trajet composé
-    this->trajetsInternes->ExporterTousTrajets(stream);
+    // Exporter les trajets qui composent ce trajet composé
+    Maillon * maillon = this->trajetsInternes->premier;
+    
+    while(maillon != nullptr)
+    {
+        maillon->GetTrajet()->ExporterTrajet(stream);
+        maillon = maillon->GetSuivant();
+    }
 
     stream << "}";
 

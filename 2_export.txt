@@ -1,0 +1,2 @@
+s,Lyon,Bordeaux,Train;
+s,Lyon,Paris,Auto;
