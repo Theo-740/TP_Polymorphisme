@@ -13,6 +13,16 @@ int main()
     Catalogue c;
     char * depart, * arrivee;
     const Liste * trajetsTrouves;
+
+    // Options pour l'import et l'export de trajets
+    char * nomFichier = new char[100];
+    int typeTrajet;
+    char * departOpt = new char[51];
+    char * arriveeOpt = new char[51];
+    int debut;
+    int fin;
+    int selection;
+
     do
     {
       cout << "Menu :" << endl;
@@ -43,23 +53,19 @@ int main()
               break;
 
             case 1:
-              char * nomFichier = new char[100];
               cout << "Nom du fichier > ";
               cin >> nomFichier;
 
-              int selection;
               cout << "Voulez-vous plus d'option d'importation ? " << endl;
               cout << "0: Oui / 1: Non" << endl;
               cin >> selection;
 
               // Options avec les valeurs par défaut
-              int typeTrajet = Catalogue::ALL;
-              char * departImp = new char[51];
-              departImp[0] = '\0';
-              char * arriveeImp = new char[51];
-              arriveeImp[0] = '\0';
-              int debut = -1;
-              int fin = -1;
+              typeTrajet = Catalogue::ALL;
+              departOpt[0] = '\0';
+              arriveeOpt[0] = '\0';
+              debut = -1;
+              fin = -1;
 
               if(!selection)
               {
@@ -95,12 +101,12 @@ int main()
                 cin >> selection;
                 if(selection==0)
                 {
-                  departImp[0] = '\0';
+                  departOpt[0] = '\0';
                 }
                 else if(selection==1)
                 {
                   cout << "Nom de la ville de départ > ";
-                  cin >> departImp;
+                  cin >> departOpt;
                 }
                 else
                 {
@@ -114,12 +120,12 @@ int main()
                 cin >> selection;
                 if(selection==0)
                 {
-                  arriveeImp[0] = '\0';
+                  arriveeOpt[0] = '\0';
                 }
                 else if(selection==1)
                 {
                   cout << "Nom de la ville d'arrivée > ";
-                  cin >> arriveeImp;
+                  cin >> arriveeOpt;
                 }
                 else
                 {
@@ -150,16 +156,116 @@ int main()
                 }
               }
 
-              c.ImporterTrajets(nomFichier,typeTrajet,departImp,arriveeImp,debut,fin);
-              delete(nomFichier);
-              delete(departImp);
-              delete(arriveeImp);
+              c.ImporterTrajets(nomFichier,typeTrajet,departOpt,arriveeOpt,debut,fin);
           }
           cout << endl;
           break;
 
         case 2:
-          c.Ajouter(Trajet::LireTrajet());
+          cout << "Nom du fichier > ";
+          cin >> nomFichier;
+
+          cout << "Voulez-vous plus d'option d'exportation ? " << endl;
+          cout << "0: Oui / 1: Non" << endl;
+          cin >> selection;
+
+          // Options avec les valeurs par défaut
+          typeTrajet = Catalogue::ALL;
+          departOpt[0] = '\0';
+          arriveeOpt[0] = '\0';
+          debut = -1;
+          fin = -1;
+
+          if(!selection)
+          {
+            cout << "-- Options d'exportation --" << endl;
+            cout << endl;
+
+            // Choix du type de trajet à exporter
+            cout << "0: Exporter tous types de trajets" << endl;
+            cout << "1: Exporter seulement les trajets simples" << endl;
+            cout << "2: Exporter seulement les trajets composés" << endl;
+            cin >> selection;
+            if(selection==0)
+            {
+              typeTrajet = Catalogue::ALL;
+            }
+            else if(selection==1)
+            {
+              typeTrajet = Catalogue::TS;
+            }
+            else if(selection==2)
+            {
+              typeTrajet = Catalogue::TC;
+            }
+            else
+            {
+              cout << "Input non reconnu" << endl;
+              break;
+            }
+
+            // Choix du départ à exporter
+            cout << "0: Exporter les trajets avec n'importe quel départ" << endl;
+            cout << "1: Exporter les trajets avec un départ spécifique" << endl;
+            cin >> selection;
+            if(selection==0)
+            {
+              departOpt[0] = '\0';
+            }
+            else if(selection==1)
+            {
+              cout << "Nom de la ville de départ > ";
+              cin >> departOpt;
+            }
+            else
+            {
+              cout << "Input non reconnu" << endl;
+              break;
+            }
+
+            // Choix de l'arrivée à exporter
+            cout << "0: Exporter les trajets avec n'importe quelle arrivée" << endl;
+            cout << "1: Exporter les trajets avec une arrivée spécifique" << endl;
+            cin >> selection;
+            if(selection==0)
+            {
+              arriveeOpt[0] = '\0';
+            }
+            else if(selection==1)
+            {
+              cout << "Nom de la ville d'arrivée > ";
+              cin >> arriveeOpt;
+            }
+            else
+            {
+              cout << "Input non reconnu" << endl;
+              break;
+            }
+
+            // Choix d'une sélection de trajets à importer
+            cout << "0: Exporter tous les trajets" << endl;
+            cout << "1: Exporter une sélection de trajets" << endl;
+            cin >> selection;
+            if(selection==0)
+            {
+              debut = -1;
+              fin = -1;
+            }
+            else if(selection==1)
+            {
+              cout << "Début de sélection (supérieur ou égal à 1) > ";
+              cin >> debut;
+              cout << "Fin de sélection (supérieur au début) > ";
+              cin >> fin;
+            }
+            else
+            {
+              cout << "Input non reconnu" << endl;
+              break;
+            }
+          }
+
+          c.ExporterTrajets(nomFichier,typeTrajet,departOpt,arriveeOpt,debut,fin);
           cout << endl;
           break;
 
@@ -194,4 +300,8 @@ int main()
       }
     }
     while(choix != 4);
+
+    delete(nomFichier);
+    delete(departOpt);
+    delete(arriveeOpt);
 }

@@ -136,7 +136,6 @@ void Catalogue::ExporterTrajets ( const char * nomFichier, int typeTrajet,
             // Test si on est dans l'intervalle demandé
             if((debut<=index && index<=fin) || debut==-1)
             {
-                cout << index << endl;
                 // Test si TS ou TC demandés
                 if( typeid(*(maillon->GetTrajet()))==typeid(TrajetSimple)
                     && (typeTrajet==ALL || typeTrajet==TS) )
