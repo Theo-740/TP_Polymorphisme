@@ -77,7 +77,7 @@ const TrajetSimple * TrajetSimple::ImporterTrajet ( ifstream & stream,
     }
 
     return new TrajetSimple(depart, arrivee, transport);
-} //----- Fin de ImporterTrajet
+} //----- Fin de Méthode
 
 int TrajetSimple::ExporterTrajet ( ofstream & stream,
                                    const char * selectDepart, 

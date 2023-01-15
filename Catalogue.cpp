@@ -114,7 +114,7 @@ void Catalogue::ImporterTrajets ( const char * nomFichier, int typeTrajet,
     {
         cout << "Le fichier ne peut pas être ouvert !" << endl;
     }
-} //----- Fin de ImporterTrajets
+} //----- Fin de Méthode
 
 void Catalogue::ExporterTrajets ( const char * nomFichier, int typeTrajet, 
                                   const char * depart, const char * arrivee,
@@ -169,7 +169,7 @@ void Catalogue::ExporterTrajets ( const char * nomFichier, int typeTrajet,
     {
         cout << "Le fichier ne peut pas être ouvert !" << endl;
     }
-} //----- Fin de ExporterTousTrajets
+} //----- Fin de Méthode
 
 //------------------------------------------------- Surcharge d'opérateurs
 

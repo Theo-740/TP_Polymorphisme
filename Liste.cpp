@@ -21,7 +21,6 @@ using namespace std;
 #include "Trajet.h"
 #include "TrajetSimple.h"
 #include "TrajetCompose.h"
-#include "Catalogue.h"
 #include "Liste.h"
 #include "Maillon.h"
 

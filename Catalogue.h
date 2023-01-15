@@ -68,7 +68,7 @@ public:
     // Importe des trajets depuis un fichier suivant les paramètres
     // spécifiés par l'utilisateur
     // Contrat :
-    //
+    // Pour l'import d'une sélection de trajet, debut < fin
 
     void ExporterTrajets ( const char * nomFichier, int typeTrajet = Catalogue::ALL, 
                            const char * depart = "", const char * arrivee = "",
@@ -77,7 +77,7 @@ public:
     // Exporte des trajets dans un fichier suivant les paramètres
     // spécifiés par l'utilisateur
     // Contrat :
-    //
+    // Pour l'export d'une sélection de trajet, debut < fin
 
 //------------------------------------------------- Surcharge d'opérateurs
 

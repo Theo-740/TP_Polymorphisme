@@ -18,8 +18,6 @@
 //------------------------------------------------------------------ Types
 class Maillon;
 class Trajet;
-class Catalogue;
-class TrajetCompose;
 
 //------------------------------------------------------------------------
 // Rôle de la classe <Liste>

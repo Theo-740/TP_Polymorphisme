@@ -48,7 +48,9 @@ public:
                                                  const char * selectDepart = "", 
                                                  const char * selectArrivee = "" );
     // Mode d'emploi :
-    // Importe un trajet simple depuis un fichier
+    // Importe un trajet simple dans un fichier
+    // Il est possible de n'importer que les trajets qui ont une
+    // certaine ville de départ ou d'arivée ou les deux
     // Contrat :
     //
 
@@ -57,6 +59,8 @@ public:
                                  const char * selectArrivee = "" ) const;
     // Mode d'emploi :
     // Exporte un trajet simple dans un fichier
+    // Retourne un int pour indiquer si le trajet a bien été exporté
+    // (pas d'export si ville de départ ou arrivée non conforme)
     // Il est possible de n'exporter que les trajets qui ont une
     // certaine ville de départ ou d'arivée ou les deux
     // Contrat :
