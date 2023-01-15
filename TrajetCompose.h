@@ -18,6 +18,7 @@
 //------------------------------------------------------------------ Types
 class Trajet;
 class Liste;
+class Catalogue;
 
 //------------------------------------------------------------------------
 // Rôle de la classe <TrajetCompose>
@@ -50,12 +51,18 @@ public:
                                                   const char * selectArrivee = "" );
     // Mode d'emploi :
     // Importe un trajet composé depuis un fichier
+    // Il est possible de n'importer que les trajets qui ont une
+    // certaine ville de départ ou d'arivée ou les deux
     // Contrat :
     //
 
-    virtual void ExporterTrajet ( ofstream & stream ) const;
+    virtual int ExporterTrajet ( ofstream & stream,
+                                 const char * selectDepart = "", 
+                                 const char * selectArrivee = "" ) const;
     // Mode d'emploi :
-    // Exporte un trajet dans un fichier
+    // Exporte un trajet composé dans un fichier
+    // Il est possible de n'exporter que les trajets qui ont une
+    // certaine ville de départ ou d'arivée ou les deux
     // Contrat :
     //
 

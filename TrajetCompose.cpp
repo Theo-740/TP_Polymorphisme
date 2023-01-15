@@ -21,6 +21,7 @@ using namespace std;
 #include "Trajet.h"
 #include "TrajetSimple.h"
 #include "TrajetCompose.h"
+#include "Catalogue.h"
 #include "Liste.h"
 #include "Maillon.h"
 
@@ -100,6 +101,8 @@ const TrajetCompose * TrajetCompose::ImporterTrajet ( ifstream & stream,
     stream.getline(depart,51,',');
     stream.getline(arrivee,51,',');
 
+    // Test si les départ et arrivés sont bien conformes aux choix de
+    // l'utilisateur
     if( ((strcmp(depart,selectDepart)!=0 && strcmp(selectDepart,"")!=0))
      || ((strcmp(arrivee,selectArrivee)!=0 && strcmp(selectArrivee,"")!=0)) )
     {
@@ -141,10 +144,21 @@ const TrajetCompose * TrajetCompose::ImporterTrajet ( ifstream & stream,
     return new TrajetCompose(depart, arrivee, trajets);
 } //----- Fin de ImporterTrajet
 
-void TrajetCompose::ExporterTrajet ( ofstream & stream ) const
+int TrajetCompose::ExporterTrajet ( ofstream & stream,
+                                     const char * selectDepart, 
+                                     const char * selectArrivee ) const
 // Algorithme :
 //
 {
+    // Test si les départ et arrivés sont bien conformes aux choix de
+    // l'utilisateur
+    if( (strcmp(this->depart,selectDepart)!=0 && strcmp(selectDepart,"")!=0)
+     || (strcmp(this->arrivee,selectArrivee)!=0 && strcmp(selectArrivee,"")!=0) )
+    {
+        return Catalogue::FAIL;
+    }
+
+
     stream << "c," << this->depart << "," << this->arrivee << ",{";
 
     // Exporter les trajets qui composent ce trajet composé
@@ -158,6 +172,7 @@ void TrajetCompose::ExporterTrajet ( ofstream & stream ) const
 
     stream << "}";
 
+    return Catalogue::OK;
 } //----- Fin de ExporterTrajet
 
 Trajet * TrajetCompose::Clone ( ) const

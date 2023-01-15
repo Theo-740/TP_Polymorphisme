@@ -14,11 +14,14 @@ int main()
     char * importFile = "1_import.txt";
     char * exportFile = "2_export.txt";
 
+    char * depart = "Lyon";
+    char * arrivee = "";
+
     // Catalogue::ALL/TS/TC
     c.ImporterTrajets(importFile);
 
     cout << "Affichage du catalogue :" << endl;
     c.Afficher();
 
-    c.ExporterTrajets(exportFile,Catalogue::TS);
+    c.ExporterTrajets(exportFile,Catalogue::ALL,depart,arrivee,1,2);
 }

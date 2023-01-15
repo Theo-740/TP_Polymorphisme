@@ -19,8 +19,10 @@ using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "Trajet.h"
-#include "Liste.h"
 #include "TrajetSimple.h"
+#include "Catalogue.h"
+#include "Liste.h"
+
 
 //------------------------------------------------------------- Constantes
 
@@ -66,8 +68,8 @@ const TrajetSimple * TrajetSimple::ImporterTrajet ( ifstream & stream,
     stream.getline(arrivee,51,',');
     stream.getline(transport,51,';');
 
-    if( ((strcmp(depart,selectDepart)!=0 && strcmp(selectDepart,"")!=0))
-     || ((strcmp(arrivee,selectArrivee)!=0 && strcmp(selectArrivee,"")!=0)) )
+    if( (strcmp(depart,selectDepart)!=0 && strcmp(selectDepart,"")!=0)
+     || (strcmp(arrivee,selectArrivee)!=0 && strcmp(selectArrivee,"")!=0) )
     {
         TrajetSimple * fail = nullptr;
         cout << "fail" << endl;
@@ -77,13 +79,26 @@ const TrajetSimple * TrajetSimple::ImporterTrajet ( ifstream & stream,
     return new TrajetSimple(depart, arrivee, transport);
 } //----- Fin de ImporterTrajet
 
-void TrajetSimple::ExporterTrajet ( ofstream & stream ) const
+int TrajetSimple::ExporterTrajet ( ofstream & stream,
+                                   const char * selectDepart, 
+                                   const char * selectArrivee ) const
 // Algorithme :
 //
 {
+    // Test si les départ et arrivés sont bien conformes aux choix de
+    // l'utilisateur
+    if( (strcmp(this->depart,selectDepart)!=0 && strcmp(selectDepart,"")!=0)
+     || (strcmp(this->arrivee,selectArrivee)!=0 && strcmp(selectArrivee,"")!=0) )
+    {
+        return Catalogue::FAIL;
+    }
+
+
     stream << "s,";
     stream << this->depart << "," << this->arrivee << "," << this->transport;
     stream << ";";
+
+    return Catalogue::OK;
 } //----- Fin de Méthode
 
 Liste * TrajetSimple::GetListeTrajets ( ) const

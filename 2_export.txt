@@ -1,2 +1,2 @@
+c,Lyon,Bahamas,{c,Lyon,Paris,{s,Lyon,Strasbourg,Train;s,Strasbourg,Paris,Velo;}s,Paris,Bahamas,Avion;}
 s,Lyon,Bordeaux,Train;
-s,Lyon,Paris,Auto;

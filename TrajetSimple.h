@@ -16,6 +16,7 @@
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
+class Catalogue;
 
 //------------------------------------------------------------------------
 // Rôle de la classe <TrajetSimple>
@@ -51,9 +52,13 @@ public:
     // Contrat :
     //
 
-    virtual void ExporterTrajet ( ofstream & stream ) const;
+    virtual int ExporterTrajet ( ofstream & stream,
+                                 const char * selectDepart = "", 
+                                 const char * selectArrivee = "" ) const;
     // Mode d'emploi :
-    // Exporte un trajet dans un fichier
+    // Exporte un trajet simple dans un fichier
+    // Il est possible de n'exporter que les trajets qui ont une
+    // certaine ville de départ ou d'arivée ou les deux
     // Contrat :
     //
 

@@ -29,6 +29,7 @@ class Catalogue
 
 public:
     enum TypeTrajet { ALL, TS, TC };
+    enum FailExport { OK, FAIL };
 
 //----------------------------------------------------- Méthodes publiques
     void Afficher ( ) const;

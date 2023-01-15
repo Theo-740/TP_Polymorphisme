@@ -83,21 +83,6 @@ public:
     // Contrat :
     //
 
-    void ImporterTrajets ( ifstream & stream, int typeTrajet, 
-                           const char * depart, const char * arrivee,
-                           int debut, int fin );
-    // Mode d'emploi :
-    // Importe des trajets depuis un fichier suivant les paramètres
-    // spécifiés par l'utilisateur
-    // Contrat :
-    //
-
-    void ExporterTrajets ( ofstream & stream ) const;
-    // Mode d'emploi :
-    // Exporte tous les trajets de la liste dans un fichier
-    // Contrat :
-    //
-
     Liste * Clone ( ) const;
     // Mode d'emploi :
     // Renvoie une copie non propriétaire de la liste

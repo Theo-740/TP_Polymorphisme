@@ -61,9 +61,13 @@ public:
     // Contrat :
     //
 
-    virtual void ExporterTrajet ( ofstream & stream ) const = 0;
+    virtual int ExporterTrajet ( ofstream & stream,
+                                 const char * selectDepart = "", 
+                                 const char * selectArrivee = "" ) const = 0;
     // Mode d'emploi :
     // Exporte un trajet dans un fichier
+    // Il est possible de n'exporter que les trajets qui ont une
+    // certaine ville de départ ou d'arivée ou les deux
     // Contrat :
     //
 
@@ -111,6 +115,7 @@ public:
     // que l'arrivée passé en paramètre dans l'ordre alphabétique
     // Contrat :
     //
+    
     virtual Trajet * Clone ( ) const = 0;
     // Mode d'emploi :
     // Renvoie une copie profonde du trajet
